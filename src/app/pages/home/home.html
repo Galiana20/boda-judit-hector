@@ -1,0 +1,249 @@
+<!-- Petals floating -->
+<div class="petals-container" aria-hidden="true">
+  @for (petal of petals; track petal.id) {
+    <div
+      class="petal petal-{{ petal.type }} petal-{{ petal.direction }}"
+      [style.left.%]="petal.left"
+      [style.width.px]="petal.size"
+      [style.height.px]="petal.size"
+      [style.animation-duration.s]="petal.duration"
+      [style.animation-delay.s]="petal.delay">
+    </div>
+  }
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero-section">
+  <div class="hero-bg-decoration">
+    <div class="hero-circle hero-circle-1"></div>
+    <div class="hero-circle hero-circle-2"></div>
+    <div class="hero-circle hero-circle-3"></div>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-pretitle">os invitamos a celebrar nuestra</p>
+    <div class="hero-ornament">
+      <span class="ornament-line"></span>
+      <i class="pi pi-heart-fill ornament-heart"></i>
+      <span class="ornament-line"></span>
+    </div>
+    <h1 class="hero-names">
+      <span class="name name-judit">Judit</span>
+      <span class="hero-and">&amp;</span>
+      <span class="name name-hector">Héctor</span>
+    </h1>
+    <div class="hero-divider"></div>
+    <p class="hero-date">2 · Octubre · 2026</p>
+    <p class="hero-location">
+      <i class="pi pi-map-marker"></i>
+      Masia Ca N'Illa · La Garriga
+    </p>
+    <button class="hero-cta" (click)="scrollTo('info')">
+      Más información
+      <i class="pi pi-chevron-down"></i>
+    </button>
+  </div>
+
+  <div class="hero-scroll-indicator" (click)="scrollTo('info')">
+    <div class="scroll-mouse">
+      <div class="scroll-wheel"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COUNTDOWN ===== -->
+<section class="countdown-section" id="countdown">
+  <div class="section-container">
+    <div class="countdown-label">Quedan...</div>
+    <div class="countdown-grid">
+      <div class="countdown-item animate-on-scroll">
+        <div class="countdown-number-wrap">
+          <span class="countdown-number">{{ padZero(days()) }}</span>
+        </div>
+        <span class="countdown-unit">días</span>
+      </div>
+      <div class="countdown-separator">:</div>
+      <div class="countdown-item animate-on-scroll" style="transition-delay: 0.1s">
+        <div class="countdown-number-wrap">
+          <span class="countdown-number">{{ padZero(hours()) }}</span>
+        </div>
+        <span class="countdown-unit">horas</span>
+      </div>
+      <div class="countdown-separator">:</div>
+      <div class="countdown-item animate-on-scroll" style="transition-delay: 0.2s">
+        <div class="countdown-number-wrap">
+          <span class="countdown-number">{{ padZero(minutes()) }}</span>
+        </div>
+        <span class="countdown-unit">minutos</span>
+      </div>
+      <div class="countdown-separator">:</div>
+      <div class="countdown-item animate-on-scroll" style="transition-delay: 0.3s">
+        <div class="countdown-number-wrap">
+          <span class="countdown-number seconds-number">{{ padZero(seconds()) }}</span>
+        </div>
+        <span class="countdown-unit">segundos</span>
+      </div>
+    </div>
+    <p class="countdown-subtitle animate-on-scroll" style="transition-delay: 0.4s">
+      para el día más especial de nuestras vidas
+    </p>
+  </div>
+</section>
+
+<!-- ===== INFO ===== -->
+<section class="info-section" id="info">
+  <div class="section-container">
+    <div class="section-header animate-on-scroll">
+      <span class="section-eyebrow">La celebración</span>
+      <h2 class="section-title">Detalles del día</h2>
+      <p class="section-subtitle">Todo lo que necesitas saber para acompañarnos en este momento tan especial</p>
+    </div>
+
+    <div class="info-cards">
+      <div class="info-card animate-on-scroll" style="transition-delay: 0.1s">
+        <div class="info-card-icon">
+          <i class="pi pi-calendar"></i>
+        </div>
+        <h3>Fecha</h3>
+        <p class="info-card-main">Viernes, 2 de octubre</p>
+        <p class="info-card-sub">2026</p>
+      </div>
+
+      <div class="info-card animate-on-scroll" style="transition-delay: 0.2s">
+        <div class="info-card-icon">
+          <i class="pi pi-clock"></i>
+        </div>
+        <h3>Hora</h3>
+        <p class="info-card-main">17:30 Convocatoria</p>
+        <p class="info-card-sub">18:00 Ceremonia</p>
+      </div>
+
+      <div class="info-card animate-on-scroll" style="transition-delay: 0.3s">
+        <div class="info-card-icon">
+          <i class="pi pi-map-marker"></i>
+        </div>
+        <h3>Lugar</h3>
+        <p class="info-card-main">Masia Ca N'Illa</p>
+        <p class="info-card-sub">La Garriga, Barcelona</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PLANNING ===== -->
+<section class="planning-section" id="planning">
+  <div class="section-container">
+    <div class="section-header animate-on-scroll">
+      <span class="section-eyebrow">El programa</span>
+      <h2 class="section-title">Planning del día</h2>
+      <p class="section-subtitle">Así será nuestra jornada. ¡Prometemos que será un día para recordar!</p>
+    </div>
+
+    <div class="timeline-wrapper animate-on-scroll" style="transition-delay: 0.2s">
+      <p-timeline [value]="schedule" layout="vertical" align="alternate">
+        <ng-template #marker let-item>
+          <div class="timeline-marker" [style.background]="item.color">
+            <i class="pi {{ item.icon }}"></i>
+          </div>
+        </ng-template>
+        <ng-template #content let-item>
+          <div class="timeline-card">
+            <span class="timeline-time">{{ item.time }}</span>
+            <h3 class="timeline-event">{{ item.event }}</h3>
+            <p class="timeline-desc">{{ item.description }}</p>
+          </div>
+        </ng-template>
+      </p-timeline>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LOCATION ===== -->
+<section class="location-section" id="location">
+  <div class="section-container">
+    <div class="section-header animate-on-scroll">
+      <span class="section-eyebrow">Cómo llegar</span>
+      <h2 class="section-title">La Masia</h2>
+      <p class="section-subtitle">Masia Ca N'Illa se encuentra en el corazón de La Garriga, rodeada de naturaleza</p>
+    </div>
+
+    <div class="location-content">
+      <div class="location-info animate-on-scroll">
+        <div class="location-detail">
+          <div class="location-icon"><i class="pi pi-map-marker"></i></div>
+          <div>
+            <h4>Dirección</h4>
+            <p>Masia Ca N'Illa<br>La Garriga, Barcelona</p>
+          </div>
+        </div>
+        <div class="location-detail">
+          <div class="location-icon"><i class="pi pi-car"></i></div>
+          <div>
+            <h4>En coche</h4>
+            <p>Autopista AP-7, salida La Garriga. Acceso indicado desde el pueblo.</p>
+          </div>
+        </div>
+        <div class="location-detail">
+          <div class="location-icon"><i class="pi pi-ticket"></i></div>
+          <div>
+            <h4>En tren</h4>
+            <p>Línea R3 (Rodalies) desde Barcelona Passeig de Gràcia hasta La Garriga.</p>
+          </div>
+        </div>
+        <a
+          href="https://maps.google.com/?q=Masia+Ca+N'Illa+La+Garriga"
+          target="_blank"
+          rel="noopener"
+          class="map-button">
+          <i class="pi pi-external-link"></i>
+          Ver en Google Maps
+        </a>
+      </div>
+
+      <div class="location-map animate-on-scroll" style="transition-delay: 0.2s">
+        <div class="map-placeholder">
+          <div class="map-pin-animation">
+            <div class="map-pin">
+              <i class="pi pi-map-marker"></i>
+            </div>
+            <div class="map-pin-shadow"></div>
+          </div>
+          <p class="map-place-name">Masia Ca N'Illa</p>
+          <p class="map-place-sub">La Garriga · Barcelona</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MEDIA CTA ===== -->
+<section class="media-cta-section">
+  <div class="media-cta-content animate-on-scroll">
+    <div class="media-cta-icon">
+      <i class="pi pi-camera"></i>
+    </div>
+    <h2>Comparte tus fotos</h2>
+    <p>
+      Queremos ver el día desde vuestros ojos. Sube tus fotos y vídeos,
+      y unos días después nosotros compartiremos todos los recuerdos con vosotros.
+    </p>
+    <a routerLink="/media" class="media-cta-button">
+      <i class="pi pi-upload"></i>
+      Subir fotos
+    </a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-hearts" aria-hidden="true">
+    <span>&#9825;</span>
+    <span>&#9825;</span>
+    <span>&#9825;</span>
+  </div>
+  <p class="footer-names">Judit & Héctor</p>
+  <p class="footer-date">2 · Octubre · 2026</p>
+  <p class="footer-location">Masia Ca N'Illa · La Garriga</p>
+  <div class="footer-divider"></div>
+  <p class="footer-love">Hecho con <i class="pi pi-heart-fill"></i> para el día más especial</p>
+</footer>

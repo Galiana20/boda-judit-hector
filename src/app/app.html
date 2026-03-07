@@ -1,0 +1,11 @@
+<nav class="app-nav">
+  <a routerLink="/" class="nav-brand">J <span class="nav-ampersand">&</span> H</a>
+  <div class="nav-links">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">Inicio</a>
+    <a routerLink="/media" routerLinkActive="active" class="nav-link nav-link-media">
+      <i class="pi pi-camera"></i> Fotos
+    </a>
+  </div>
+</nav>
+
+<router-outlet />
