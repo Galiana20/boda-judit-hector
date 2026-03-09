@@ -1,0 +1,345 @@
+/* ================================================
+   PAGE LAYOUT
+================================================ */
+.admin-page {
+  min-height: 100dvh;
+  background: #F5F5F5;
+  padding-bottom: 60px;
+}
+
+/* ================================================
+   HEADER
+================================================ */
+.admin-header {
+  background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+  padding: 80px 0 0;
+  border-bottom: 3px solid #004D98;
+}
+
+.admin-header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 24px 0;
+}
+
+.admin-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 12px;
+}
+.breadcrumb-link {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.breadcrumb-link:hover { color: #C4974A; }
+.admin-breadcrumb .pi-angle-right { font-size: 0.65rem; }
+
+.admin-title {
+  font-family: 'Lato', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.admin-title .pi { color: #C4974A; }
+
+.admin-tabs {
+  display: flex;
+  gap: 4px;
+}
+.admin-tab {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px 8px 0 0;
+  color: rgba(255,255,255,0.55);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+.admin-tab:hover { color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.07); }
+.admin-tab.tab-active {
+  background: #F5F5F5;
+  color: #1A1A2E;
+}
+
+/* ================================================
+   LOADING
+================================================ */
+.admin-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 40vh;
+  color: #9A7235;
+  font-family: 'Lato', sans-serif;
+}
+.admin-loading .pi { font-size: 2rem; }
+
+/* ================================================
+   STATS BAR
+================================================ */
+.stats-bar {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 24px 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 12px;
+  padding: 18px 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  border-top: 3px solid transparent;
+}
+.stat-total { border-top-color: #9A7235; }
+.stat-confirmed { border-top-color: #2E7D32; }
+.stat-pending { border-top-color: #F57F17; }
+.stat-persons { border-top-color: #004D98; }
+
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1A1A2E;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-label {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+/* ================================================
+   FILTER BAR
+================================================ */
+.filter-bar {
+  max-width: 960px;
+  margin: 20px auto 0;
+  padding: 0 24px;
+  display: flex;
+  gap: 8px;
+}
+
+.filter-btn {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 7px 18px;
+  border-radius: 50px;
+  border: 1.5px solid #DDD;
+  background: white;
+  color: #888;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.filter-btn:hover { border-color: #C4974A; color: #9A7235; }
+.filter-btn.active {
+  background: #1A1A2E;
+  border-color: #1A1A2E;
+  color: white;
+}
+
+/* ================================================
+   INVITADOS LIST
+================================================ */
+.invitados-list {
+  max-width: 960px;
+  margin: 16px auto 0;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.inv-card {
+  background: white;
+  border-radius: 14px;
+  padding: 20px 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  border-left: 4px solid #DDD;
+  transition: box-shadow 0.2s;
+}
+.inv-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+.inv-card.inv-confirmed { border-left-color: #2E7D32; }
+.inv-card:not(.inv-confirmed) { border-left-color: #F57F17; }
+
+.inv-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.inv-name-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.inv-code {
+  font-family: 'Lato', monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #AAA;
+  text-transform: uppercase;
+}
+
+.inv-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #1A1A2E;
+  margin: 0;
+}
+
+.inv-badges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 4px 12px;
+  border-radius: 50px;
+}
+.badge-confirmed { background: rgba(46,125,50,0.1); color: #2E7D32; border: 1px solid rgba(46,125,50,0.25); }
+.badge-pending { background: rgba(245,127,23,0.1); color: #E65100; border: 1px solid rgba(245,127,23,0.25); }
+.badge-persons { background: rgba(0,77,152,0.08); color: #004D98; border: 1px solid rgba(0,77,152,0.2); }
+.badge-with-acomp { background: rgba(0,77,152,0.06); color: #004D98; border: 1px solid rgba(0,77,152,0.15); }
+.badge-without-acomp { background: rgba(117,117,117,0.08); color: #757575; border: 1px solid rgba(117,117,117,0.2); }
+
+.inv-comments {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.85rem;
+  color: #555;
+  padding: 8px 12px;
+  background: #FAFAFA;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-style: italic;
+}
+.inv-comments .pi { color: #C4974A; flex-shrink: 0; margin-top: 2px; }
+
+/* ================================================
+   ACOMPANYANTS
+================================================ */
+.acomp-section {
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px solid #F0F0F0;
+}
+
+.acomp-section-title {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #AAA;
+  margin-bottom: 8px;
+}
+
+.acomp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.acomp-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.85rem;
+}
+
+.acomp-asiste { color: #333; }
+.acomp-asiste .pi { color: #2E7D32; }
+.acomp-no-asiste { color: #AAA; }
+.acomp-no-asiste .pi { color: #E57373; }
+.acomp-no-asiste .acomp-name { text-decoration: line-through; }
+
+.acomp-name { font-weight: 600; }
+.acomp-comment { color: #888; font-style: italic; }
+
+.acomp-badge-absent {
+  font-size: 0.68rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 50px;
+  background: rgba(229,115,115,0.12);
+  color: #C62828;
+  border: 1px solid rgba(229,115,115,0.2);
+  margin-left: 4px;
+}
+
+.acomp-no-detail {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.82rem;
+  color: #AAA;
+  font-style: italic;
+  margin: 0;
+}
+
+/* ================================================
+   EMPTY STATE
+================================================ */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: #BBB;
+  font-family: 'Lato', sans-serif;
+}
+.empty-state .pi { font-size: 2rem; display: block; margin-bottom: 12px; }
+
+/* ================================================
+   RESPONSIVE
+================================================ */
+@media (max-width: 640px) {
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
+  .inv-card { padding: 16px; }
+  .inv-card-header { flex-direction: column; }
+  .admin-title { font-size: 1.3rem; }
+}

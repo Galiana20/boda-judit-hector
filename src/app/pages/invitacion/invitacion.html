@@ -1,0 +1,143 @@
+<div class="modal-backdrop" (click)="closeModal()">
+  <div class="modal-card" (click)="$event.stopPropagation()">
+
+    @if (estado() === 'loading') {
+
+      <div class="modal-loading">
+        <i class="pi pi-spin pi-spinner"></i>
+        <p>{{ i18n.T().inv.loading }}</p>
+      </div>
+
+    } @else if (estado() === 'modal') {
+
+      <!-- Botó tancar -->
+      <button class="modal-close" (click)="closeModal()" aria-label="Tancar">
+        <i class="pi pi-times"></i>
+      </button>
+
+      <!-- Capçalera de la invitació -->
+      <div class="inv-header">
+        <div class="inv-corner inv-corner-tl"></div>
+        <div class="inv-corner inv-corner-tr"></div>
+        <img src="/img/escudo.png" alt="" class="inv-escudo">
+        <p class="inv-pretitle">{{ i18n.T().inv.pretitle }}</p>
+        <h2 class="inv-names">Judit <span class="inv-amp">&amp;</span> Héctor</h2>
+        <p class="inv-date">{{ i18n.T().inv.date }}</p>
+        <p class="inv-place">{{ i18n.T().inv.place }}</p>
+        <div class="inv-ornament">
+          <span></span><i class="pi pi-heart-fill"></i><span></span>
+        </div>
+      </div>
+
+      <!-- Benvinguda personal -->
+      <div class="inv-welcome">
+        <p class="inv-welcome-greeting">Hola, <strong>{{ invitado()?.nombre }}</strong> 👋</p>
+        <p class="inv-welcome-text">{{ i18n.T().inv.welcomeText }}</p>
+        <div class="inv-welcome-badges">
+          @if ((invitado()?.numeroAcompanantes ?? 0) > 0) {
+            <span class="inv-pill inv-pill-acomp"><i class="pi pi-users"></i> {{ i18n.T().inv.companionsTitle }} ({{ invitado()?.numeroAcompanantes }})</span>
+          } @else {
+            <span class="inv-pill inv-pill-solo"><i class="pi pi-user"></i> {{ i18n.T().inv.noCompanions }}</span>
+          }
+        </div>
+      </div>
+
+      <!-- Formulari -->
+      <div class="inv-body" [formGroup]="form">
+
+        <h3 class="inv-section-title">{{ i18n.T().inv.sectionTitle }}</h3>
+
+        <!-- Comentaris titular -->
+        <div class="form-field">
+          <label class="form-label">{{ i18n.T().inv.commentsLabel }}</label>
+          <textarea class="form-textarea" formControlName="comentarios"
+            [placeholder]="i18n.T().inv.commentsPlaceholder" rows="2"></textarea>
+        </div>
+
+        <!-- Acompanyants -->
+        @if ((invitado()?.numeroAcompanantes ?? 0) === 0) {
+          <div class="inv-no-acomp">
+            <i class="pi pi-user"></i>
+            <span>{{ i18n.T().inv.noCompanions }}</span>
+          </div>
+        }
+        @if ((invitado()?.numeroAcompanantes ?? 0) > 0) {
+          <div class="inv-acompanantes">
+            <h4 class="inv-section-subtitle">
+              <i class="pi pi-users"></i>
+              {{ i18n.T().inv.companionsTitle }} ({{ invitado()?.numeroAcompanantes }})
+            </h4>
+
+            <div formArrayName="acompanantesDetalle">
+              @for (acomp of acompanantes.controls; track $index) {
+                <div class="acomp-card" [class.acomp-absent]="!acomp.value.asiste" [formGroupName]="$index">
+                  <div class="acomp-num">{{ $index + 1 }}</div>
+                  <div class="acomp-fields">
+                    <div class="form-field">
+                      <label class="form-label">{{ i18n.T().inv.companionNameLabel }}</label>
+                      <input type="text" class="form-input" formControlName="nombre"
+                        [placeholder]="i18n.T().inv.companionNamePlaceholder"
+                        [disabled]="!acomp.value.asiste">
+                    </div>
+                    @if (acomp.value.asiste) {
+                      <div class="form-field">
+                        <label class="form-label">{{ i18n.T().inv.companionCommentsLabel }}</label>
+                        <input type="text" class="form-input" formControlName="comentario"
+                          [placeholder]="i18n.T().inv.companionCommentsPlaceholder">
+                      </div>
+                    }
+                  </div>
+                  <button type="button" class="acomp-toggle"
+                    [class.acomp-toggle-off]="!acomp.value.asiste"
+                    (click)="toggleAsiste($index)"
+                    [title]="acomp.value.asiste ? i18n.T().inv.companionAttending : i18n.T().inv.companionNotAttending">
+                    @if (acomp.value.asiste) {
+                      <i class="pi pi-check"></i>
+                    } @else {
+                      <i class="pi pi-times"></i>
+                    }
+                  </button>
+                </div>
+              }
+            </div>
+          </div>
+        }
+
+        <!-- Errors i feedback -->
+        @if (error()) {
+          <p class="form-error"><i class="pi pi-exclamation-circle"></i> {{ error() }}</p>
+        }
+        @if (saved()) {
+          <div class="form-success">
+            <i class="pi pi-check-circle"></i>
+            {{ i18n.T().inv.successMsg }}
+          </div>
+        }
+
+        <!-- Botons -->
+        <div class="inv-actions">
+          <button class="btn-confirm" (click)="confirmar()" [disabled]="saving()">
+            @if (saving()) {
+              <i class="pi pi-spin pi-spinner"></i> {{ i18n.T().inv.saving }}
+            } @else {
+              <i class="pi pi-send"></i> {{ i18n.T().inv.confirmBtn }}
+            }
+          </button>
+          <button class="btn-close-modal" (click)="closeModal()">
+            {{ i18n.T().inv.closeBtn }}
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Footer invitació -->
+      <div class="inv-footer">
+        <div class="inv-corner inv-corner-bl"></div>
+        <div class="inv-corner inv-corner-br"></div>
+        <p>{{ i18n.T().inv.footerMsg }}</p>
+      </div>
+
+    }
+
+  </div>
+</div>

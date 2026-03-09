@@ -1,0 +1,125 @@
+<div class="admin-page">
+
+  <!-- Header -->
+  <div class="admin-header">
+    <div class="admin-header-inner">
+      <div class="admin-breadcrumb">
+        <a routerLink="/" class="breadcrumb-link"><i class="pi pi-home"></i> {{ i18n.T().nav.home }}</a>
+        <i class="pi pi-angle-right"></i>
+        <span>Admin</span>
+        <i class="pi pi-angle-right"></i>
+        <span>{{ i18n.T().adminFotos.title }}</span>
+      </div>
+      <h1 class="admin-title"><i class="pi pi-images"></i> {{ i18n.T().adminFotos.title }}</h1>
+      <div class="admin-tabs">
+        <a routerLink="/admin/invitados" routerLinkActive="tab-active" class="admin-tab">
+          <i class="pi pi-users"></i> {{ i18n.T().adminInv.title }}
+        </a>
+        <a routerLink="/admin/fotos" routerLinkActive="tab-active" class="admin-tab">
+          <i class="pi pi-images"></i> {{ i18n.T().adminFotos.title }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  @if (loading()) {
+    <div class="admin-loading">
+      <i class="pi pi-spin pi-spinner"></i>
+      <p>{{ i18n.T().adminFotos.loading }}</p>
+    </div>
+  } @else {
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stat-card stat-total">
+        <div class="stat-num">{{ fotos().length }}</div>
+        <div class="stat-label"><i class="pi pi-images"></i> {{ i18n.T().adminFotos.statTotal }}</div>
+      </div>
+      <div class="stat-card stat-confirmed">
+        <div class="stat-num">{{ totalAprobadas }}</div>
+        <div class="stat-label"><i class="pi pi-eye"></i> {{ i18n.T().adminFotos.statApproved }}</div>
+      </div>
+      <div class="stat-card stat-pending">
+        <div class="stat-num">{{ totalPendientes }}</div>
+        <div class="stat-label"><i class="pi pi-eye-slash"></i> {{ i18n.T().adminFotos.statPending }}</div>
+      </div>
+    </div>
+
+    <!-- Grid -->
+    @if (fotos().length === 0) {
+      <div class="empty-state">
+        <i class="pi pi-images"></i>
+        <p>{{ i18n.T().adminFotos.empty }}</p>
+      </div>
+    } @else {
+      <div class="fotos-grid">
+        @for (foto of fotos(); track foto.id) {
+          <div class="foto-card" [class.foto-approved]="foto.aprobada">
+
+            <div class="foto-thumb">
+              @if (foto.tipo.startsWith('image/')) {
+                <img [src]="foto.url" [alt]="foto.nombre" loading="lazy">
+              } @else {
+                <div class="foto-video-icon">
+                  <i class="pi pi-video"></i>
+                </div>
+              }
+              <div class="foto-overlay">
+                <button class="approve-btn"
+                  [class.btn-approved]="foto.aprobada"
+                  [class.btn-pending]="!foto.aprobada"
+                  [disabled]="togglingId() === foto.id"
+                  (click)="toggleAprobada(foto)">
+                  @if (togglingId() === foto.id) {
+                    <i class="pi pi-spin pi-spinner"></i>
+                  } @else if (foto.aprobada) {
+                    <i class="pi pi-eye-slash"></i> {{ i18n.T().adminFotos.hide }}
+                  } @else {
+                    <i class="pi pi-eye"></i> {{ i18n.T().adminFotos.approve }}
+                  }
+                </button>
+              </div>
+            </div>
+
+            <div class="foto-info">
+              <div class="foto-status">
+                @if (foto.aprobada) {
+                  <span class="status-badge status-approved"><i class="pi pi-eye"></i> {{ i18n.T().adminFotos.visible }}</span>
+                } @else {
+                  <span class="status-badge status-pending"><i class="pi pi-eye-slash"></i> {{ i18n.T().adminFotos.hidden }}</span>
+                }
+                <span class="foto-code">{{ foto.codigoInvitado }}</span>
+              </div>
+              <p class="foto-name" [title]="foto.nombre">{{ foto.nombre }}</p>
+              <div class="foto-meta">
+                <span>{{ formatSize(foto.tamano) }}</span>
+                <span>{{ formatDate(foto.fechaSubida) }}</span>
+              </div>
+
+              @if (confirmingDeleteId() === foto.id) {
+                <div class="delete-confirm">
+                  <span>{{ i18n.T().adminFotos.deleteConfirm }}</span>
+                  <div class="delete-confirm-btns">
+                    <button class="btn-delete-yes" (click)="confirmDelete(foto)" [disabled]="deletingId() === foto.id">
+                      @if (deletingId() === foto.id) {
+                        <i class="pi pi-spin pi-spinner"></i>
+                      } @else {
+                        <i class="pi pi-trash"></i> {{ i18n.T().adminFotos.deleteYes }}
+                      }
+                    </button>
+                    <button class="btn-delete-no" (click)="cancelDelete()">{{ i18n.T().adminFotos.deleteNo }}</button>
+                  </div>
+                </div>
+              } @else {
+                <button class="btn-delete" (click)="requestDelete(foto.id)" [disabled]="!!togglingId()">
+                  <i class="pi pi-trash"></i> {{ i18n.T().adminFotos.delete }}
+                </button>
+              }
+            </div>
+
+          </div>
+        }
+      </div>
+    }
+  }
+</div>

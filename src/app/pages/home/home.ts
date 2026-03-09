@@ -53,8 +53,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   ];
 
   masiaPhotos = [
-    'https://www.masiacanilla.com/wp-content/uploads/2024/02/0120_Ca-nilla_2023-scaled.jpg',
-    'https://www.masiacanilla.com/wp-content/uploads/2024/02/022-Jardi-scaled.jpg',
+    '/img/masia.jpg',
+    '/img/jardins.jpg',
   ];
 
   constructor(private el: ElementRef) {}

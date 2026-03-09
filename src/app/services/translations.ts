@@ -1,5 +1,5 @@
 export interface Texts {
-  nav: { home: string; photos: string };
+  nav: { home: string; photos: string; myInvitation: string; gallery: string };
   splash: {
     tagline: string; subtitle: string; enter: string;
     passwordPlaceholder: string; wrongPassword: string; hint: string;
@@ -38,10 +38,79 @@ export interface Texts {
     galleryEyebrow: string; galleryTitle: string; galleryText: string;
     comingSoonTitle: string; comingSoonText: string;
   };
+  inv: {
+    loading: string;
+    pretitle: string;
+    date: string;
+    place: string;
+    welcomeText: string;
+    sectionTitle: string;
+    commentsLabel: string;
+    commentsPlaceholder: string;
+    companionsTitle: string;
+    companionNameLabel: string;
+    companionNamePlaceholder: string;
+    companionCommentsLabel: string;
+    companionCommentsPlaceholder: string;
+    companionAttending: string;
+    companionNotAttending: string;
+    noCompanions: string;
+    errorSave: string;
+    successMsg: string;
+    confirmBtn: string;
+    saving: string;
+    closeBtn: string;
+    footerMsg: string;
+  };
+  galeria: {
+    heroTitle: string;
+    heroText: string;
+    backLink: string;
+    loading: string;
+    emptyTitle: string;
+    emptyText: string;
+    emptyBtn: string;
+    photoCount: string;
+  };
+  adminInv: {
+    title: string;
+    loading: string;
+    statInvitations: string;
+    statConfirmed: string;
+    statPending: string;
+    statPersons: string;
+    filterAll: string;
+    filterConfirmed: string;
+    filterPending: string;
+    badgeConfirmed: string;
+    badgePending: string;
+    companions: string;
+    companionPending: string;
+    companionAbsent: string;
+    empty: string;
+    withCompanions: string;
+    withoutCompanions: string;
+  };
+  adminFotos: {
+    title: string;
+    loading: string;
+    statTotal: string;
+    statApproved: string;
+    statPending: string;
+    approve: string;
+    hide: string;
+    visible: string;
+    hidden: string;
+    empty: string;
+    delete: string;
+    deleteConfirm: string;
+    deleteYes: string;
+    deleteNo: string;
+  };
 }
 
 export const ca: Texts = {
-  nav: { home: 'Inici', photos: 'Fotos' },
+  nav: { home: 'Inici', photos: 'Fotos', myInvitation: 'La meva invitació', gallery: 'Galeria' },
   splash: {
     tagline: 'Més que un casament',
     subtitle: 'La historia d\'amor de',
@@ -114,10 +183,79 @@ export const ca: Texts = {
     comingSoonTitle: 'Properament',
     comingSoonText: 'Les fotos apareixeran aquí després de la boda.\nTorneu a l\'octubre!',
   },
+  inv: {
+    loading: 'Carregant la teva invitació...',
+    pretitle: 'Teniu el plaer de ser convidats a la boda de',
+    date: 'Divendres, 2 d\'Octubre de 2026',
+    place: 'Masia Ca N\'Illa · La Garriga',
+    welcomeText: 'Ens fa molta il·lusió poder comptar amb tu en el nostre gran dia. Si us plau, confirma la teva assistència i la dels teus acompanyants, i indica\'ns si tens alguna al·lèrgia o necessitat especial.',
+    sectionTitle: 'Confirma la teva assistència',
+    commentsLabel: 'Al·lèrgies o comentaris',
+    commentsPlaceholder: 'Cap al·lèrgia',
+    companionsTitle: 'Acompanyants',
+    companionNameLabel: 'Nom',
+    companionNamePlaceholder: 'Nom de l\'acompanyant',
+    companionCommentsLabel: 'Al·lèrgies o comentaris',
+    companionCommentsPlaceholder: 'Cap al·lèrgia',
+    companionAttending: 'Assistirà',
+    companionNotAttending: 'No assistirà',
+    noCompanions: 'Sense acompanyants',
+    errorSave: 'Error al guardar. Torna-ho a intentar.',
+    successMsg: 'Guardat correctament! Ens veiem el 2 d\'octubre.',
+    confirmBtn: 'Confirmar assistència',
+    saving: 'Guardant...',
+    closeBtn: 'Tancar',
+    footerMsg: 'L\'amor ens uneix i ens fa forts',
+  },
+  galeria: {
+    heroTitle: 'La nostra galeria',
+    heroText: 'Tots els moments que heu compartit amb nosaltres',
+    backLink: 'Tornar a l\'inici',
+    loading: 'Carregant galeria...',
+    emptyTitle: 'Aviat arribarà la màgia',
+    emptyText: 'Les fotos apareixeran aquí un cop aprovades. Comparteix els teus moments a la secció de Fotos!',
+    emptyBtn: 'Pujar fotos',
+    photoCount: 'fotos',
+  },
+  adminInv: {
+    title: 'Invitats',
+    loading: 'Carregant invitats...',
+    statInvitations: 'Invitacions',
+    statConfirmed: 'Confirmats',
+    statPending: 'Pendents',
+    statPersons: 'Persones',
+    filterAll: 'Tots',
+    filterConfirmed: 'Confirmats',
+    filterPending: 'Pendents',
+    badgeConfirmed: 'Confirmat',
+    badgePending: 'Pendent',
+    companions: 'Acompanyants',
+    companionPending: 'acompanyant(s) — pendent de confirmar',
+    companionAbsent: 'No assistirà',
+    empty: 'Cap invitat en aquesta categoria',
+    withCompanions: 'Amb acompanyants',
+    withoutCompanions: 'Sense acompanyants',
+  },
+  adminFotos: {
+    title: 'Fotos',
+    loading: 'Carregant fotos...',
+    statTotal: 'Total',
+    statApproved: 'Aprovades',
+    statPending: 'Pendents',
+    approve: 'Aprovar',
+    hide: 'Ocultar',
+    visible: 'Visible',
+    hidden: 'Oculta',
+    empty: 'Encara no hi ha fotos pujades',
+    delete: 'Eliminar',
+    deleteConfirm: 'Segur que vols eliminar-la?',
+    deleteYes: 'Sí, eliminar',
+    deleteNo: 'Cancel·lar',
+  },
 };
 
 export const es: Texts = {
-  nav: { home: 'Inicio', photos: 'Fotos' },
+  nav: { home: 'Inicio', photos: 'Fotos', myInvitation: 'Mi invitación', gallery: 'Galería' },
   splash: {
     tagline: 'Más que una boda',
     subtitle: 'La historia de amor de',
@@ -189,5 +327,74 @@ export const es: Texts = {
     galleryText: 'Aquí aparecerán las fotos que vayáis subiendo. Unos días después de la boda, los novios subirán el reportaje completo.',
     comingSoonTitle: 'Próximamente',
     comingSoonText: 'Las fotos aparecerán aquí después de la boda.\n¡Volved en octubre!',
+  },
+  inv: {
+    loading: 'Cargando tu invitación...',
+    pretitle: 'Tenéis el placer de ser invitados a la boda de',
+    date: 'Viernes, 2 de Octubre de 2026',
+    place: 'Masia Ca N\'Illa · La Garriga',
+    welcomeText: 'Nos hace mucha ilusión poder contar contigo en nuestro gran día. Por favor, confirma tu asistencia y la de tus acompañantes, e indícanos si tienes alguna alergia o necesidad especial.',
+    sectionTitle: 'Confirma tu asistencia',
+    commentsLabel: 'Alergias o comentarios',
+    commentsPlaceholder: 'Ninguna alergia',
+    companionsTitle: 'Acompañantes',
+    companionNameLabel: 'Nombre',
+    companionNamePlaceholder: 'Nombre del acompañante',
+    companionCommentsLabel: 'Alergias o comentarios',
+    companionCommentsPlaceholder: 'Ninguna alergia',
+    companionAttending: 'Asistirá',
+    companionNotAttending: 'No asistirá',
+    noCompanions: 'Sin acompañantes',
+    errorSave: 'Error al guardar. Inténtalo de nuevo.',
+    successMsg: '¡Guardado correctamente! Nos vemos el 2 de octubre.',
+    confirmBtn: 'Confirmar asistencia',
+    saving: 'Guardando...',
+    closeBtn: 'Cerrar',
+    footerMsg: 'El amor nos une y nos hace fuertes',
+  },
+  galeria: {
+    heroTitle: 'Nuestra galería',
+    heroText: 'Todos los momentos que habéis compartido con nosotros',
+    backLink: 'Volver al inicio',
+    loading: 'Cargando galería...',
+    emptyTitle: 'Pronto llegará la magia',
+    emptyText: 'Las fotos aparecerán aquí una vez aprobadas. ¡Comparte tus momentos en la sección de Fotos!',
+    emptyBtn: 'Subir fotos',
+    photoCount: 'fotos',
+  },
+  adminInv: {
+    title: 'Invitados',
+    loading: 'Cargando invitados...',
+    statInvitations: 'Invitaciones',
+    statConfirmed: 'Confirmados',
+    statPending: 'Pendientes',
+    statPersons: 'Personas',
+    filterAll: 'Todos',
+    filterConfirmed: 'Confirmados',
+    filterPending: 'Pendientes',
+    badgeConfirmed: 'Confirmado',
+    badgePending: 'Pendiente',
+    companions: 'Acompañantes',
+    companionPending: 'acompañante(s) — pendiente de confirmar',
+    companionAbsent: 'No asistirá',
+    empty: 'Ningún invitado en esta categoría',
+    withCompanions: 'Con acompañantes',
+    withoutCompanions: 'Sin acompañantes',
+  },
+  adminFotos: {
+    title: 'Fotos',
+    loading: 'Cargando fotos...',
+    statTotal: 'Total',
+    statApproved: 'Aprobadas',
+    statPending: 'Pendientes',
+    approve: 'Aprobar',
+    hide: 'Ocultar',
+    visible: 'Visible',
+    hidden: 'Oculta',
+    empty: 'Todavía no hay fotos subidas',
+    delete: 'Eliminar',
+    deleteConfirm: '¿Seguro que quieres eliminarla?',
+    deleteYes: 'Sí, eliminar',
+    deleteNo: 'Cancelar',
   },
 };

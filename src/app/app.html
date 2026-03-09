@@ -11,9 +11,29 @@
       <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">
         {{ i18n.T().nav.home }}
       </a>
+      <a routerLink="/galeria" routerLinkActive="active" class="nav-link">
+        <i class="pi pi-images"></i> {{ i18n.T().nav.gallery }}
+      </a>
       <a routerLink="/media" routerLinkActive="active" class="nav-link nav-link-media">
         <i class="pi pi-camera"></i> {{ i18n.T().nav.photos }}
       </a>
+      <button class="nav-inv-btn" (click)="auth.invitacioOberta.set(true)">
+        <i class="pi pi-envelope-open"></i>
+        <span>{{ i18n.T().nav.myInvitation }}</span>
+      </button>
+      @if (auth.isAdmin()) {
+        <div class="nav-admin-group">
+          <a routerLink="/admin/invitados" routerLinkActive="admin-active" class="nav-admin-link">
+            <i class="pi pi-users"></i>
+          </a>
+          <a routerLink="/admin/fotos" routerLinkActive="admin-active" class="nav-admin-link">
+            <i class="pi pi-images"></i>
+          </a>
+        </div>
+      }
+      <button class="nav-logout-btn" (click)="auth.logout()" title="Tancar sessió">
+        <i class="pi pi-sign-out"></i>
+      </button>
       <div class="lang-switcher">
         <button class="lang-btn" [class.active]="i18n.lang() === 'ca'" (click)="setLang('ca')">CA</button>
         <span class="lang-sep">|</span>
@@ -23,4 +43,8 @@
   </nav>
 
   <router-outlet />
+
+  @if (auth.invitacioOberta()) {
+    <app-invitacion />
+  }
 }

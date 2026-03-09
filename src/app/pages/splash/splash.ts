@@ -1,5 +1,6 @@
 import { Component, signal, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { I18nService, Lang } from '../../services/i18n.service';
 
@@ -12,21 +13,43 @@ import { I18nService, Lang } from '../../services/i18n.service';
 export class SplashComponent {
   auth = inject(AuthService);
   i18n = inject(I18nService);
+  private router = inject(Router);
 
-  password = '';
-  error = signal(false);
+  codigo = '';
+  loading = signal(false);
+  error = signal('');
   shake = signal(false);
-  showHint = signal(false);
 
-  submit(): void {
-    if (this.auth.tryLogin(this.password)) {
-      this.error.set(false);
-    } else {
-      this.error.set(true);
-      this.shake.set(true);
-      setTimeout(() => this.shake.set(false), 600);
-      this.password = '';
+  async submit(): Promise<void> {
+    if (this.loading()) return;
+    const code = this.codigo.trim();
+    if (!code) {
+      this.triggerError('Introdueix el teu codi d\'invitació.');
+      return;
     }
+
+    this.loading.set(true);
+    this.error.set('');
+
+    const result = await this.auth.tryLoginWithCodigo(code);
+
+    this.loading.set(false);
+
+    if (result === 'ok') {
+      this.auth.invitacioOberta.set(true);
+      this.router.navigate(['/']);
+    } else if (result === 'not-found') {
+      this.triggerError('Codi no trobat. Comprova que l\'has escrit bé.');
+      this.codigo = '';
+    } else if (result === 'error') {
+      this.triggerError('Error de connexió. Torna-ho a intentar.');
+    }
+  }
+
+  private triggerError(msg: string): void {
+    this.error.set(msg);
+    this.shake.set(true);
+    setTimeout(() => this.shake.set(false), 600);
   }
 
   onKeydown(event: KeyboardEvent): void {

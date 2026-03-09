@@ -1,0 +1,83 @@
+<!-- Hero -->
+<div class="galeria-hero">
+  <div class="galeria-hero-bars" aria-hidden="true">
+    @for (s of [0,1,2,3,4,5,6,7,8,9,10,11]; track s) {
+      <div class="gbar" [class.gbar-blau]="s%2===0" [class.gbar-grana]="s%2!==0"></div>
+    }
+  </div>
+  <div class="galeria-hero-content">
+    <div class="galeria-hero-icon"><i class="pi pi-images"></i></div>
+    <h1>{{ i18n.T().galeria.heroTitle }}</h1>
+    <p>{{ i18n.T().galeria.heroText }}</p>
+    <a routerLink="/" class="back-link">
+      <i class="pi pi-arrow-left"></i> {{ i18n.T().galeria.backLink }}
+    </a>
+  </div>
+</div>
+
+<!-- Content -->
+<div class="galeria-content">
+
+  @if (loading()) {
+    <div class="galeria-loading">
+      <i class="pi pi-spin pi-spinner"></i>
+      <p>{{ i18n.T().galeria.loading }}</p>
+    </div>
+  } @else if (fotos().length === 0) {
+    <div class="galeria-empty">
+      <img src="/img/escudo.png" alt="" class="empty-escudo">
+      <h2>{{ i18n.T().galeria.emptyTitle }}</h2>
+      <p>{{ i18n.T().galeria.emptyText }}</p>
+      <a routerLink="/media" class="empty-btn">
+        <i class="pi pi-camera"></i> {{ i18n.T().galeria.emptyBtn }}
+      </a>
+    </div>
+  } @else {
+
+    <div class="galeria-stats">
+      <span><i class="pi pi-images"></i> {{ fotos().length }} {{ i18n.T().galeria.photoCount }}</span>
+    </div>
+
+    <div class="galeria-grid">
+      @for (foto of fotos(); track foto.id) {
+        <div class="galeria-item"
+          [class.galeria-item-video]="foto.tipo.startsWith('video/')"
+          (click)="openLightbox(foto)">
+          @if (foto.tipo.startsWith('image/')) {
+            <img [src]="foto.url" [alt]="foto.nombre" loading="lazy">
+            <div class="item-overlay"><i class="pi pi-search-plus"></i></div>
+          } @else {
+            <div class="item-video-thumb">
+              <i class="pi pi-video"></i>
+              <span>Vídeo</span>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>
+
+<!-- Footer -->
+<footer class="galeria-footer">
+  <p>Judit &amp; Héctor · 2 d'Octubre de 2026</p>
+  <a routerLink="/" class="footer-home-link">
+    <i class="pi pi-home"></i> {{ i18n.T().galeria.backLink }}
+  </a>
+</footer>
+
+<!-- Lightbox -->
+@if (lightboxFoto()) {
+  <div class="lightbox-backdrop" (click)="closeLightbox()">
+    <button class="lightbox-close" (click)="closeLightbox()"><i class="pi pi-times"></i></button>
+    <button class="lightbox-nav lightbox-prev" (click)="$event.stopPropagation(); navLightbox(-1)">
+      <i class="pi pi-angle-left"></i>
+    </button>
+    <div class="lightbox-img-wrap" (click)="$event.stopPropagation()">
+      <img [src]="lightboxFoto()!.url" [alt]="lightboxFoto()!.nombre">
+    </div>
+    <button class="lightbox-nav lightbox-next" (click)="$event.stopPropagation(); navLightbox(1)">
+      <i class="pi pi-angle-right"></i>
+    </button>
+  </div>
+}

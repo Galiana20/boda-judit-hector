@@ -112,6 +112,89 @@
   box-shadow: 0 4px 16px rgba(196, 151, 74, 0.4);
 }
 
+/* Botó invitació nav */
+.nav-inv-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: 1.5px solid var(--gold);
+  color: var(--gold-dark);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 7px 16px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.nav-inv-btn:hover {
+  background: var(--gold);
+  color: var(--white);
+  box-shadow: 0 4px 14px rgba(196, 151, 74, 0.35);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  .nav-inv-btn span { display: none; }
+  .nav-inv-btn { padding: 7px 10px; }
+}
+
+/* Logout button */
+.nav-logout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: none;
+  border: 1.5px solid rgba(196, 151, 74, 0.25);
+  color: #AAA;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+.nav-logout-btn:hover {
+  background: rgba(198, 40, 40, 0.08);
+  border-color: rgba(198, 40, 40, 0.35);
+  color: #C62828;
+}
+
+/* Admin nav links */
+.nav-admin-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-left: 16px;
+  border-left: 1px solid rgba(196, 151, 74, 0.2);
+}
+
+.nav-admin-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(26, 26, 46, 0.08);
+  color: #666;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+.nav-admin-link:hover {
+  background: #1A1A2E;
+  color: white;
+}
+.nav-admin-link.admin-active {
+  background: #1A1A2E;
+  color: #C4974A;
+}
+
 /* Language switcher */
 .lang-switcher {
   display: flex;

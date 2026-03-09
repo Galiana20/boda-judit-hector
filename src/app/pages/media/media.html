@@ -71,20 +71,20 @@
       </div>
     </div>
 
-    @if (uploadedFiles().length > 0) {
+    @if (files().length > 0) {
       <div class="upload-queue">
         <div class="queue-header">
-          <h3>{{ i18n.T().media.queueHeader }} <span class="queue-count">{{ uploadedFiles().length }}</span></h3>
-          @if (totalUploaded() > 0) {
+          <h3>{{ i18n.T().media.queueHeader }} <span class="queue-count">{{ files().length }}</span></h3>
+          @if (totalDone > 0) {
             <span class="queue-done">
               <i class="pi pi-check-circle"></i>
-              {{ totalUploaded() }} {{ i18n.T().media.doneText }}
+              {{ totalDone }} {{ i18n.T().media.doneText }}
             </span>
           }
         </div>
         <div class="queue-list">
-          @for (file of uploadedFiles(); track file.name; let i = $index) {
-            <div class="queue-item" [class.done]="file.status === 'done'">
+          @for (file of files(); track file.id) {
+            <div class="queue-item" [class.done]="file.status === 'done'" [class.error]="file.status === 'error'">
               <div class="queue-item-preview">
                 @if (file.preview) {
                   <img [src]="file.preview" [alt]="file.name">
@@ -97,31 +97,50 @@
               <div class="queue-item-info">
                 <span class="queue-item-name">{{ file.name }}</span>
                 <span class="queue-item-size">{{ formatSize(file.size) }}</span>
-                @if (file.status === 'uploading') {
+                @if (file.status === 'uploading' || file.status === 'done') {
                   <div class="queue-progress">
-                    <div class="progress-bar"><div class="progress-fill" [style.width.%]="file.progress"></div></div>
+                    <div class="progress-bar">
+                      <div class="progress-fill" [style.width.%]="file.progress"
+                        [class.progress-done]="file.status === 'done'"></div>
+                    </div>
                     <span class="progress-pct">{{ file.progress }}%</span>
                   </div>
+                }
+                @if (file.status === 'error') {
+                  <span class="queue-item-error"><i class="pi pi-exclamation-circle"></i> Error en la pujada</span>
                 }
               </div>
               <div class="queue-item-status">
                 @if (file.status === 'done') { <i class="pi pi-check-circle status-done"></i> }
                 @else if (file.status === 'uploading') { <i class="pi pi-spin pi-spinner status-loading"></i> }
+                @else if (file.status === 'error') { <i class="pi pi-times-circle status-error"></i> }
               </div>
-              <button class="queue-item-remove" (click)="removeFile(i)"><i class="pi pi-times"></i></button>
+              <button class="queue-item-remove" (click)="removeFile(file.id)" [disabled]="isUploading()">
+                <i class="pi pi-times"></i>
+              </button>
             </div>
           }
         </div>
       </div>
     }
 
-    @if (uploadedFiles().length > 0) {
+    @if (allDone()) {
+      <div class="upload-success">
+        <i class="pi pi-check-circle"></i>
+        <p>{{ i18n.T().media.submitBtn }} — {{ i18n.T().media.doneText }} ✓</p>
+      </div>
+    }
+
+    @if (files().length > 0 && !allDone()) {
       <div class="upload-actions">
-        <button class="submit-btn" [disabled]="uploadedFiles().some(f => f.status === 'uploading')">
-          <i class="pi pi-send"></i>
-          {{ uploadedFiles().some(f => f.status === 'uploading') ? i18n.T().media.submitting : i18n.T().media.submitBtn }}
+        <button class="submit-btn" (click)="submitFiles()"
+          [disabled]="isUploading() || !hasPending">
+          @if (isUploading()) {
+            <i class="pi pi-spin pi-spinner"></i> {{ i18n.T().media.submitting }}
+          } @else {
+            <i class="pi pi-send"></i> {{ i18n.T().media.submitBtn }}
+          }
         </button>
-        <p class="submit-note">{{ i18n.T().media.submitNote }}</p>
       </div>
     }
   </div>

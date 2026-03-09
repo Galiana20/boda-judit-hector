@@ -689,3 +689,34 @@
     padding: 10px 12px;
   }
 }
+
+/* ======= UPLOAD SUCCESS ======= */
+.upload-success {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f0faf4;
+  border: 1.5px solid #4caf80;
+  border-radius: 12px;
+  padding: 1.2rem 1.5rem;
+  margin-top: 1.5rem;
+  color: #2d7a52;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.upload-success .pi {
+  font-size: 1.5rem;
+  color: #4caf80;
+}
+
+.upload-success p { margin: 0; }
+
+/* ======= ERROR STATE ======= */
+.queue-item.error { border-color: rgba(220, 53, 69, 0.3); background: rgba(220, 53, 69, 0.04); }
+.queue-item-error { color: #dc3545; font-size: 0.75rem; margin-top: 2px; display: flex; align-items: center; gap: 4px; }
+.status-error { color: #dc3545; font-size: 1.1rem; }
+
+/* ======= PROGRESS DONE ======= */
+.progress-fill.progress-done { background: #4caf80; }

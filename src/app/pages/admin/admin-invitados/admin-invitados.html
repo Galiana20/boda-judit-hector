@@ -1,0 +1,138 @@
+<div class="admin-page">
+
+  <!-- Header -->
+  <div class="admin-header">
+    <div class="admin-header-inner">
+      <div class="admin-breadcrumb">
+        <a routerLink="/" class="breadcrumb-link"><i class="pi pi-home"></i> {{ i18n.T().nav.home }}</a>
+        <i class="pi pi-angle-right"></i>
+        <span>Admin</span>
+        <i class="pi pi-angle-right"></i>
+        <span>{{ i18n.T().adminInv.title }}</span>
+      </div>
+      <h1 class="admin-title"><i class="pi pi-users"></i> {{ i18n.T().adminInv.title }}</h1>
+      <div class="admin-tabs">
+        <a routerLink="/admin/invitados" routerLinkActive="tab-active" class="admin-tab">
+          <i class="pi pi-users"></i> {{ i18n.T().adminInv.title }}
+        </a>
+        <a routerLink="/admin/fotos" routerLinkActive="tab-active" class="admin-tab">
+          <i class="pi pi-images"></i> {{ i18n.T().adminFotos.title }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  @if (loading()) {
+    <div class="admin-loading">
+      <i class="pi pi-spin pi-spinner"></i>
+      <p>{{ i18n.T().adminInv.loading }}</p>
+    </div>
+  } @else {
+
+    <!-- Stats -->
+    <div class="stats-bar">
+      <div class="stat-card stat-total">
+        <div class="stat-num">{{ invitados().length }}</div>
+        <div class="stat-label"><i class="pi pi-id-card"></i> {{ i18n.T().adminInv.statInvitations }}</div>
+      </div>
+      <div class="stat-card stat-confirmed">
+        <div class="stat-num">{{ totalConfirmats }}</div>
+        <div class="stat-label"><i class="pi pi-check-circle"></i> {{ i18n.T().adminInv.statConfirmed }}</div>
+      </div>
+      <div class="stat-card stat-pending">
+        <div class="stat-num">{{ totalPendents }}</div>
+        <div class="stat-label"><i class="pi pi-clock"></i> {{ i18n.T().adminInv.statPending }}</div>
+      </div>
+      <div class="stat-card stat-persons">
+        <div class="stat-num">{{ totalPersones }}</div>
+        <div class="stat-label"><i class="pi pi-users"></i> {{ i18n.T().adminInv.statPersons }}</div>
+      </div>
+    </div>
+
+    <!-- Filter -->
+    <div class="filter-bar">
+      <button class="filter-btn" [class.active]="filtro() === 'todos'" (click)="filtro.set('todos')">
+        {{ i18n.T().adminInv.filterAll }}
+      </button>
+      <button class="filter-btn" [class.active]="filtro() === 'confirmats'" (click)="filtro.set('confirmats')">
+        {{ i18n.T().adminInv.filterConfirmed }}
+      </button>
+      <button class="filter-btn" [class.active]="filtro() === 'pendents'" (click)="filtro.set('pendents')">
+        {{ i18n.T().adminInv.filterPending }}
+      </button>
+    </div>
+
+    <!-- List -->
+    <div class="invitados-list">
+      @for (inv of invitadosFiltrats(); track inv.id) {
+        <div class="inv-card" [class.inv-confirmed]="inv.confirmacion">
+
+          <div class="inv-card-header">
+            <div class="inv-name-row">
+              <span class="inv-code">{{ inv.id }}</span>
+              <h2 class="inv-name">{{ inv.nombre }}</h2>
+            </div>
+            <div class="inv-badges">
+              @if (inv.confirmacion) {
+                <span class="badge badge-confirmed"><i class="pi pi-check"></i> {{ i18n.T().adminInv.badgeConfirmed }}</span>
+              } @else {
+                <span class="badge badge-pending"><i class="pi pi-clock"></i> {{ i18n.T().adminInv.badgePending }}</span>
+              }
+              <span class="badge badge-persons">
+                <i class="pi pi-users"></i>
+                {{ 1 + inv.numeroAcompanantes }} pers.
+              </span>
+              @if (inv.acompanantesDetalle.length > 0) {
+                <span class="badge badge-with-acomp"><i class="pi pi-user-plus"></i> {{ i18n.T().adminInv.withCompanions }}</span>
+              } @else {
+                <span class="badge badge-without-acomp"><i class="pi pi-user"></i> {{ i18n.T().adminInv.withoutCompanions }}</span>
+              }
+            </div>
+          </div>
+
+          @if (inv.comentarios) {
+            <div class="inv-comments">
+              <i class="pi pi-comment"></i>
+              <span>{{ inv.comentarios }}</span>
+            </div>
+          }
+
+          @if (inv.acompanantesDetalle.length > 0) {
+            <div class="acomp-section">
+              <div class="acomp-section-title">{{ i18n.T().adminInv.companions }}</div>
+              <div class="acomp-list">
+                @for (a of acompAsisten(inv); track $index) {
+                  <div class="acomp-item acomp-asiste">
+                    <i class="pi pi-check-circle"></i>
+                    <span class="acomp-name">{{ a.nombre || '—' }}</span>
+                    @if (a.comentario) { <span class="acomp-comment">· {{ a.comentario }}</span> }
+                  </div>
+                }
+                @for (a of acompNoAsisten(inv); track $index) {
+                  <div class="acomp-item acomp-no-asiste">
+                    <i class="pi pi-times-circle"></i>
+                    <span class="acomp-name">{{ a.nombre || '—' }}</span>
+                    <span class="acomp-badge-absent">{{ i18n.T().adminInv.companionAbsent }}</span>
+                  </div>
+                }
+              </div>
+            </div>
+          } @else if (inv.numeroAcompanantes > 0) {
+            <div class="acomp-section">
+              <div class="acomp-section-title">{{ i18n.T().adminInv.companions }}</div>
+              <p class="acomp-no-detail"><i class="pi pi-clock"></i> {{ inv.numeroAcompanantes }} {{ i18n.T().adminInv.companionPending }}</p>
+            </div>
+          }
+
+        </div>
+      }
+
+      @if (invitadosFiltrats().length === 0) {
+        <div class="empty-state">
+          <i class="pi pi-search"></i>
+          <p>{{ i18n.T().adminInv.empty }}</p>
+        </div>
+      }
+    </div>
+  }
+</div>

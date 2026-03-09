@@ -39,37 +39,34 @@
     <strong>Judit &amp; Héctor</strong>
   </p>
 
-  <!-- Password form -->
+  <!-- Codi form -->
   <div class="splash-form" [class.shake]="shake()">
     <div class="input-wrap">
-      <i class="pi pi-lock input-icon"></i>
+      <i class="pi pi-ticket input-icon"></i>
       <input
-        type="password"
+        type="text"
         class="splash-input"
         [class.error]="error()"
-        [placeholder]="i18n.T().splash.passwordPlaceholder"
-        [(ngModel)]="password"
+        placeholder="Codi d'invitació"
+        [(ngModel)]="codigo"
         (keydown)="onKeydown($event)"
         autocomplete="off"
+        autocapitalize="characters"
       >
     </div>
 
     @if (error()) {
-      <p class="splash-error">{{ i18n.T().splash.wrongPassword }}</p>
+      <p class="splash-error">{{ error() }}</p>
     }
 
-    <button class="splash-btn" (click)="submit()">
-      {{ i18n.T().splash.enter }}
-      <i class="pi pi-arrow-right"></i>
+    <button class="splash-btn" (click)="submit()" [disabled]="loading()">
+      @if (loading()) {
+        <i class="pi pi-spin pi-spinner"></i> Cercant...
+      } @else {
+        {{ i18n.T().splash.enter }}
+        <i class="pi pi-arrow-right"></i>
+      }
     </button>
-
-    <button class="splash-hint-btn" (click)="showHint.set(!showHint())">
-      <i class="pi pi-question-circle"></i>
-    </button>
-
-    @if (showHint()) {
-      <p class="splash-hint">{{ i18n.T().splash.hint }}</p>
-    }
   </div>
 
   <!-- FCB motto -->
