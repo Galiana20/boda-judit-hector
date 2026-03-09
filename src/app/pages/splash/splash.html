@@ -1,0 +1,77 @@
+<!-- Vertical blaugrana stripes background -->
+<div class="splash-stripes" aria-hidden="true">
+  @for (stripe of [0,1,2,3,4,5,6,7,8,9,10,11]; track stripe) {
+    <div class="stripe" [class.stripe-blau]="stripe % 2 === 0" [class.stripe-grana]="stripe % 2 !== 0"></div>
+  }
+</div>
+
+<!-- Language switcher -->
+<div class="lang-switcher-splash">
+  <button
+    class="lang-btn"
+    [class.active]="i18n.lang() === 'ca'"
+    (click)="setLang('ca')">CA</button>
+  <span class="lang-sep">|</span>
+  <button
+    class="lang-btn"
+    [class.active]="i18n.lang() === 'es'"
+    (click)="setLang('es')">ES</button>
+</div>
+
+<!-- Main content -->
+<div class="splash-content">
+
+  <!-- Escudo -->
+  <div class="escudo-wrapper" [class.shake]="shake()">
+    <div class="escudo-glow"></div>
+    <img src="/img/escudo.png" alt="Escudo Judit i Héctor" class="escudo-img">
+  </div>
+
+  <!-- Tagline -->
+  <div class="splash-tagline-wrap">
+    <span class="splash-tagline-line"></span>
+    <h1 class="splash-tagline">{{ i18n.T().splash.tagline }}</h1>
+    <span class="splash-tagline-line"></span>
+  </div>
+
+  <p class="splash-subtitle">
+    {{ i18n.T().splash.subtitle }}
+    <strong>Judit &amp; Héctor</strong>
+  </p>
+
+  <!-- Password form -->
+  <div class="splash-form" [class.shake]="shake()">
+    <div class="input-wrap">
+      <i class="pi pi-lock input-icon"></i>
+      <input
+        type="password"
+        class="splash-input"
+        [class.error]="error()"
+        [placeholder]="i18n.T().splash.passwordPlaceholder"
+        [(ngModel)]="password"
+        (keydown)="onKeydown($event)"
+        autocomplete="off"
+      >
+    </div>
+
+    @if (error()) {
+      <p class="splash-error">{{ i18n.T().splash.wrongPassword }}</p>
+    }
+
+    <button class="splash-btn" (click)="submit()">
+      {{ i18n.T().splash.enter }}
+      <i class="pi pi-arrow-right"></i>
+    </button>
+
+    <button class="splash-hint-btn" (click)="showHint.set(!showHint())">
+      <i class="pi pi-question-circle"></i>
+    </button>
+
+    @if (showHint()) {
+      <p class="splash-hint">{{ i18n.T().splash.hint }}</p>
+    }
+  </div>
+
+  <!-- FCB motto -->
+  <p class="splash-motto">L'AMOR ENS UNEIX I ENS FA FORTS</p>
+</div>

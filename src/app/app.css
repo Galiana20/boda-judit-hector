@@ -7,25 +7,44 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 40px;
-  background: rgba(253, 248, 240, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  padding: 10px 40px;
+  background: rgba(253, 248, 240, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(196, 151, 74, 0.15);
+}
+
+/* Brand with escudo */
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
   transition: all 0.3s ease;
 }
 
-.nav-brand {
-  font-family: var(--font-decorative);
-  font-size: 1.6rem;
-  font-weight: 400;
-  color: var(--text-dark);
-  text-decoration: none;
-  letter-spacing: 0.1em;
-  transition: var(--transition);
+.nav-escudo {
+  height: 44px;
+  width: auto;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.12));
+  transition: all 0.3s ease;
 }
 
-.nav-brand:hover {
+.nav-brand:hover .nav-escudo {
+  filter: drop-shadow(0 4px 12px rgba(196, 151, 74, 0.45));
+  transform: scale(1.06);
+}
+
+.nav-brand-text {
+  font-family: var(--font-decorative);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--text-dark);
+  letter-spacing: 0.1em;
+  transition: color 0.3s ease;
+}
+
+.nav-brand:hover .nav-brand-text {
   color: var(--gold);
 }
 
@@ -37,12 +56,12 @@
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 24px;
 }
 
 .nav-link {
   font-family: var(--font-body);
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   font-weight: 400;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -79,14 +98,12 @@
   gap: 6px;
   background: var(--gold);
   color: var(--white) !important;
-  padding: 8px 20px;
+  padding: 8px 18px;
   border-radius: 50px;
   letter-spacing: 0.1em;
 }
 
-.nav-link-media::after {
-  display: none;
-}
+.nav-link-media::after { display: none; }
 
 .nav-link-media:hover {
   background: var(--gold-dark) !important;
@@ -95,16 +112,46 @@
   box-shadow: 0 4px 16px rgba(196, 151, 74, 0.4);
 }
 
-@media (max-width: 600px) {
-  .app-nav {
-    padding: 14px 20px;
-  }
+/* Language switcher */
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  border-left: 1px solid rgba(196, 151, 74, 0.2);
+  padding-left: 18px;
+}
 
-  .nav-links {
-    gap: 16px;
-  }
+.lang-btn {
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text-light);
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: color 0.2s ease;
+}
 
-  .nav-brand {
-    font-size: 1.3rem;
-  }
+.lang-btn.active {
+  color: var(--gold-dark);
+}
+
+.lang-btn:hover {
+  color: var(--text-dark);
+}
+
+.lang-sep {
+  color: rgba(196, 151, 74, 0.3);
+  font-size: 0.7rem;
+}
+
+@media (max-width: 640px) {
+  .app-nav { padding: 10px 16px; }
+  .nav-brand-text { display: none; }
+  .nav-escudo { height: 36px; }
+  .nav-links { gap: 12px; }
+  .lang-switcher { padding-left: 10px; }
 }

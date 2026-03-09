@@ -1,0 +1,309 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* ---- STRIPES BACKGROUND ---- */
+.splash-stripes {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  z-index: 0;
+}
+
+.stripe {
+  flex: 1;
+  opacity: 1;
+}
+
+.stripe-blau {
+  background: #0057B8;
+}
+
+.stripe-grana {
+  background: #C0003A;
+}
+
+/* Luminous radial overlay — golden glow at center, subtle dark at edges */
+:host::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 70% at 50% 50%, rgba(196, 151, 74, 0.28) 0%, transparent 70%),
+    linear-gradient(to bottom, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.18) 50%, rgba(0,0,0,0.30) 100%);
+  z-index: 1;
+}
+
+/* ---- LANG SWITCHER ---- */
+.lang-switcher-splash {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.lang-btn.active {
+  color: var(--gold-light);
+}
+
+.lang-btn:hover {
+  color: var(--white);
+}
+
+.lang-sep {
+  color: rgba(255,255,255,0.2);
+  font-size: 0.75rem;
+}
+
+/* ---- MAIN CONTENT ---- */
+.splash-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  padding: 32px 24px;
+  max-width: 500px;
+  width: 100%;
+  animation: fadeIn 0.8s ease;
+}
+
+/* ---- ESCUDO ---- */
+.escudo-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.escudo-glow {
+  position: absolute;
+  inset: -70px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 220, 120, 0.55) 0%, rgba(196, 151, 74, 0.25) 45%, transparent 70%);
+  animation: heartbeat 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.escudo-img {
+  width: 440px;
+  height: auto;
+  filter: drop-shadow(0 8px 32px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 20px rgba(196, 151, 74, 0.4));
+  animation: float 4s ease-in-out infinite;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .escudo-img {
+    width: min(340px, 88vw);
+  }
+}
+
+/* ---- TAGLINE ---- */
+.splash-tagline-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.splash-tagline-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 220, 130, 0.85));
+  min-width: 40px;
+}
+
+.splash-tagline-line:last-child {
+  background: linear-gradient(to left, transparent, rgba(255, 220, 130, 0.85));
+}
+
+.splash-tagline {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 5vw, 2rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--white);
+  white-space: nowrap;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+}
+
+/* ---- SUBTITLE ---- */
+.splash-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.05em;
+  margin-top: -12px;
+}
+
+.splash-subtitle strong {
+  font-family: var(--font-decorative);
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--gold-light);
+  font-weight: 400;
+}
+
+/* ---- FORM ---- */
+.splash-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 340px;
+}
+
+.splash-form.shake {
+  animation: shakeForm 0.5s ease;
+}
+
+@keyframes shakeForm {
+  0%, 100% { transform: translateX(0); }
+  20%  { transform: translateX(-8px); }
+  40%  { transform: translateX(8px); }
+  60%  { transform: translateX(-6px); }
+  80%  { transform: translateX(6px); }
+}
+
+.input-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.input-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(196, 151, 74, 0.6);
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+
+.splash-input {
+  width: 100%;
+  padding: 14px 20px 14px 44px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(196, 151, 74, 0.35);
+  border-radius: 50px;
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  letter-spacing: 0.15em;
+  outline: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  text-align: center;
+}
+
+.splash-input::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.1em;
+}
+
+.splash-input:focus {
+  border-color: var(--gold);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 0 3px rgba(196, 151, 74, 0.15);
+}
+
+.splash-input.error {
+  border-color: rgba(232, 80, 80, 0.7);
+  box-shadow: 0 0 0 3px rgba(232, 80, 80, 0.1);
+}
+
+.splash-error {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: #ff9090;
+  text-align: center;
+}
+
+.splash-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--gold) 0%, #A07830 100%);
+  color: var(--white);
+  border: none;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 14px 48px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 24px rgba(196, 151, 74, 0.35);
+  width: 100%;
+  justify-content: center;
+}
+
+.splash-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(196, 151, 74, 0.5);
+  background: linear-gradient(135deg, #D4A84A 0%, var(--gold) 100%);
+}
+
+.splash-btn:active {
+  transform: translateY(0);
+}
+
+.splash-hint-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 4px;
+}
+
+.splash-hint-btn:hover {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.splash-hint {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-style: italic;
+  animation: fadeIn 0.3s ease;
+}
+
+/* ---- MOTTO ---- */
+.splash-motto {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: rgba(196, 151, 74, 0.45);
+  text-transform: uppercase;
+  margin-top: 8px;
+}

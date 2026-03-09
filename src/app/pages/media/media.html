@@ -1,106 +1,87 @@
-<p-toast />
-
 <!-- Hero -->
 <div class="media-hero">
+  <div class="media-hero-blaugrana" aria-hidden="true">
+    @for (s of [0,1,2,3,4,5,6,7,8,9,10,11]; track s) {
+      <div class="mbar" [class.mbar-blau]="s%2===0" [class.mbar-grana]="s%2!==0"></div>
+    }
+  </div>
   <div class="media-hero-content">
     <div class="media-hero-icon">
       <i class="pi pi-camera"></i>
     </div>
-    <h1>Vuestros momentos</h1>
-    <p>
-      Cada foto cuenta una historia. Comparte tus mejores momentos del día
-      y en unos días recibiréis todas las fotos del reportaje completo.
-    </p>
+    <h1>{{ i18n.T().media.heroTitle }}</h1>
+    <p>{{ i18n.T().media.heroText }}</p>
     <a routerLink="/" class="back-link">
       <i class="pi pi-arrow-left"></i>
-      Volver al inicio
+      {{ i18n.T().media.backLink }}
     </a>
   </div>
 </div>
 
-<!-- Info Banner -->
+<!-- Info steps -->
 <div class="info-banner">
   <div class="info-banner-inner">
     <div class="info-step">
       <div class="step-num">01</div>
       <div class="step-text">
-        <strong>Sube tus fotos</strong>
-        <span>Arrastra o selecciona tus imágenes y vídeos del día</span>
+        <strong>{{ i18n.T().media.step1.title }}</strong>
+        <span>{{ i18n.T().media.step1.text }}</span>
       </div>
     </div>
     <div class="info-step-divider"></div>
     <div class="info-step">
       <div class="step-num">02</div>
       <div class="step-text">
-        <strong>Nosotros las revisamos</strong>
-        <span>Judit y Héctor recopilarán todos los recuerdos</span>
+        <strong>{{ i18n.T().media.step2.title }}</strong>
+        <span>{{ i18n.T().media.step2.text }}</span>
       </div>
     </div>
     <div class="info-step-divider"></div>
     <div class="info-step">
       <div class="step-num">03</div>
       <div class="step-text">
-        <strong>Álbum compartido</strong>
-        <span>En unos días recibiréis el álbum completo con todas las fotos</span>
+        <strong>{{ i18n.T().media.step3.title }}</strong>
+        <span>{{ i18n.T().media.step3.text }}</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Upload Section -->
+<!-- Upload -->
 <section class="upload-section">
   <div class="upload-container">
-    <h2 class="upload-title">Subir fotos</h2>
+    <h2 class="upload-title">{{ i18n.T().media.uploadTitle }}</h2>
 
-    <!-- Drop Zone -->
-    <div
-      class="drop-zone"
-      [class.drag-over]="isDragOver()"
-      (dragover)="onDragOver($event)"
-      (dragleave)="onDragLeave()"
-      (drop)="onDrop($event)"
-      (click)="triggerFileInput()">
+    <div class="drop-zone" [class.drag-over]="isDragOver()"
+      (dragover)="onDragOver($event)" (dragleave)="onDragLeave()"
+      (drop)="onDrop($event)" (click)="triggerFileInput()">
 
-      <input
-        type="file"
-        id="file-input"
-        multiple
-        accept="image/*,video/*"
-        (change)="onFileSelect($event)"
-        style="display:none">
+      <input type="file" id="file-input" multiple accept="image/*,video/*"
+        (change)="onFileSelect($event)" style="display:none">
 
       <div class="drop-zone-inner">
         <div class="drop-zone-icon" [class.active]="isDragOver()">
           <i class="pi pi-cloud-upload"></i>
         </div>
-        <h3>{{ isDragOver() ? '¡Suéltalas aquí!' : 'Arrastra tus fotos aquí' }}</h3>
-        <p>o haz clic para seleccionarlas</p>
+        <h3>{{ isDragOver() ? i18n.T().media.dropZone.titleActive : i18n.T().media.dropZone.title }}</h3>
+        <p>{{ i18n.T().media.dropZone.subtitle }}</p>
         <div class="drop-zone-formats">
-          <span>JPG</span>
-          <span>PNG</span>
-          <span>HEIC</span>
-          <span>MP4</span>
-          <span>MOV</span>
+          <span>JPG</span><span>PNG</span><span>HEIC</span><span>MP4</span><span>MOV</span>
         </div>
       </div>
     </div>
 
-    <!-- Upload Queue -->
     @if (uploadedFiles().length > 0) {
       <div class="upload-queue">
         <div class="queue-header">
-          <h3>
-            Archivos
-            <span class="queue-count">{{ uploadedFiles().length }}</span>
-          </h3>
+          <h3>{{ i18n.T().media.queueHeader }} <span class="queue-count">{{ uploadedFiles().length }}</span></h3>
           @if (totalUploaded() > 0) {
             <span class="queue-done">
               <i class="pi pi-check-circle"></i>
-              {{ totalUploaded() }} subidos correctamente
+              {{ totalUploaded() }} {{ i18n.T().media.doneText }}
             </span>
           }
         </div>
-
         <div class="queue-list">
           @for (file of uploadedFiles(); track file.name; let i = $index) {
             <div class="queue-item" [class.done]="file.status === 'done'">
@@ -108,13 +89,9 @@
                 @if (file.preview) {
                   <img [src]="file.preview" [alt]="file.name">
                 } @else if (file.type.startsWith('video/')) {
-                  <div class="preview-icon video">
-                    <i class="pi pi-video"></i>
-                  </div>
+                  <div class="preview-icon video"><i class="pi pi-video"></i></div>
                 } @else {
-                  <div class="preview-icon">
-                    <i class="pi pi-image"></i>
-                  </div>
+                  <div class="preview-icon"><i class="pi pi-image"></i></div>
                 }
               </div>
               <div class="queue-item-info">
@@ -122,83 +99,66 @@
                 <span class="queue-item-size">{{ formatSize(file.size) }}</span>
                 @if (file.status === 'uploading') {
                   <div class="queue-progress">
-                    <div class="progress-bar">
-                      <div class="progress-fill" [style.width.%]="file.progress"></div>
-                    </div>
+                    <div class="progress-bar"><div class="progress-fill" [style.width.%]="file.progress"></div></div>
                     <span class="progress-pct">{{ file.progress }}%</span>
                   </div>
                 }
               </div>
               <div class="queue-item-status">
-                @if (file.status === 'done') {
-                  <i class="pi pi-check-circle status-done"></i>
-                } @else if (file.status === 'uploading') {
-                  <i class="pi pi-spin pi-spinner status-loading"></i>
-                }
+                @if (file.status === 'done') { <i class="pi pi-check-circle status-done"></i> }
+                @else if (file.status === 'uploading') { <i class="pi pi-spin pi-spinner status-loading"></i> }
               </div>
-              <button class="queue-item-remove" (click)="removeFile(i)" title="Eliminar">
-                <i class="pi pi-times"></i>
-              </button>
+              <button class="queue-item-remove" (click)="removeFile(i)"><i class="pi pi-times"></i></button>
             </div>
           }
         </div>
       </div>
     }
 
-    <!-- Submit button -->
     @if (uploadedFiles().length > 0) {
       <div class="upload-actions">
         <button class="submit-btn" [disabled]="uploadedFiles().some(f => f.status === 'uploading')">
           <i class="pi pi-send"></i>
-          @if (uploadedFiles().some(f => f.status === 'uploading')) {
-            Subiendo archivos...
-          } @else {
-            Enviar fotos a los novios
-          }
+          {{ uploadedFiles().some(f => f.status === 'uploading') ? i18n.T().media.submitting : i18n.T().media.submitBtn }}
         </button>
-        <p class="submit-note">
-          * La subida real se activará cuando el back-end esté listo.
-          Por ahora se simula el proceso.
-        </p>
+        <p class="submit-note">{{ i18n.T().media.submitNote }}</p>
       </div>
     }
   </div>
 </section>
 
-<!-- Gallery Preview -->
+<!-- Gallery -->
 <section class="gallery-section">
   <div class="gallery-container">
     <div class="gallery-header">
-      <span class="section-eyebrow">El álbum del día</span>
-      <h2>Momentos compartidos</h2>
-      <p>Aquí aparecerán las fotos que vayáis subiendo. Unos días después de la boda, los novios subirán el reportaje completo.</p>
+      <span class="section-eyebrow">{{ i18n.T().media.galleryEyebrow }}</span>
+      <h2>{{ i18n.T().media.galleryTitle }}</h2>
+      <p>{{ i18n.T().media.galleryText }}</p>
     </div>
-
     <div class="gallery-coming-soon">
       <div class="gallery-grid">
         @for (item of mockGallery; track item.id) {
           <div class="gallery-item" [style.background]="item.color">
             <i class="pi {{ item.icon }}"></i>
-            <span>{{ item.label }}</span>
           </div>
         }
       </div>
       <div class="gallery-overlay">
         <div class="gallery-overlay-content">
-          <i class="pi pi-lock"></i>
-          <h3>Próximamente</h3>
-          <p>Las fotos aparecerán aquí después de la boda.<br>¡Volvid en octubre!</p>
+          <img src="/img/escudo.png" alt="Escudo" class="gallery-escudo">
+          <h3>{{ i18n.T().media.comingSoonTitle }}</h3>
+          <p>{{ i18n.T().media.comingSoonText }}</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Footer mini -->
+<!-- Footer -->
 <footer class="media-footer">
-  <p>Judit &amp; Héctor · 2 de Octubre de 2026</p>
+  <p>Judit &amp; Héctor · 2 d'Octubre de 2026</p>
   <a routerLink="/" class="footer-home-link">
     <i class="pi pi-home"></i>
-    Volver al inicio
+    {{ i18n.T().media.backLink }}
   </a>
 </footer>

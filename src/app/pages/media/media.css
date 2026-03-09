@@ -1,4 +1,12 @@
 /* ======= MEDIA HERO ======= */
+.media-hero-blaugrana {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 5px; display: flex; z-index: 2;
+}
+.mbar { flex: 1; }
+.mbar-blau { background: #004D98; }
+.mbar-grana { background: #A50044; }
+
 .media-hero {
   min-height: 50vh;
   background: linear-gradient(
@@ -586,12 +594,12 @@
   text-align: center;
 }
 
-.gallery-overlay-content .pi {
-  font-size: 2.5rem;
-  color: var(--gold);
+.gallery-escudo {
+  width: 80px; height: auto;
+  filter: drop-shadow(0 4px 16px rgba(0,0,0,.2));
   margin-bottom: 20px;
-  display: block;
   animation: float 3s ease-in-out infinite;
+  display: block; margin-left: auto; margin-right: auto;
 }
 
 .gallery-overlay-content h3 {

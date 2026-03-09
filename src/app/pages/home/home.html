@@ -1,91 +1,95 @@
-<!-- Petals floating -->
+<!-- Petals -->
 <div class="petals-container" aria-hidden="true">
-  @for (petal of petals; track petal.id) {
-    <div
-      class="petal petal-{{ petal.type }} petal-{{ petal.direction }}"
-      [style.left.%]="petal.left"
-      [style.width.px]="petal.size"
-      [style.height.px]="petal.size"
-      [style.animation-duration.s]="petal.duration"
-      [style.animation-delay.s]="petal.delay">
-    </div>
+  @for (p of petals; track p.id) {
+    <div class="petal petal-{{ p.type }} petal-{{ p.direction }}"
+      [style.left.%]="p.left" [style.width.px]="p.size"
+      [style.height.px]="p.size" [style.animation-duration.s]="p.duration"
+      [style.animation-delay.s]="p.delay"></div>
   }
 </div>
 
 <!-- ===== HERO ===== -->
 <section class="hero-section">
-  <div class="hero-bg-decoration">
+  <!-- Blaugrana stripe accent top -->
+  <div class="hero-blaugrana-bar" aria-hidden="true">
+    @for (s of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]; track s) {
+      <div class="hbar-stripe" [class.hbar-blau]="s % 2 === 0" [class.hbar-grana]="s % 2 !== 0"></div>
+    }
+  </div>
+
+  <div class="hero-bg-decoration" aria-hidden="true">
     <div class="hero-circle hero-circle-1"></div>
     <div class="hero-circle hero-circle-2"></div>
-    <div class="hero-circle hero-circle-3"></div>
   </div>
 
   <div class="hero-content">
-    <p class="hero-pretitle">os invitamos a celebrar nuestra</p>
+    <div class="hero-escudo-wrap animate-on-scroll">
+      <img src="/img/escudo.png" alt="Escudo Judit i Héctor" class="hero-escudo">
+    </div>
+
+    <p class="hero-pretitle">{{ i18n.T().hero.pretitle }}</p>
+
     <div class="hero-ornament">
       <span class="ornament-line"></span>
       <i class="pi pi-heart-fill ornament-heart"></i>
       <span class="ornament-line"></span>
     </div>
+
     <h1 class="hero-names">
       <span class="name name-judit">Judit</span>
       <span class="hero-and">&amp;</span>
       <span class="name name-hector">Héctor</span>
     </h1>
+
     <div class="hero-divider"></div>
-    <p class="hero-date">2 · Octubre · 2026</p>
+    <p class="hero-date">{{ i18n.T().hero.date }}</p>
     <p class="hero-location">
       <i class="pi pi-map-marker"></i>
-      Masia Ca N'Illa · La Garriga
+      {{ i18n.T().hero.location }}
     </p>
-    <button class="hero-cta" (click)="scrollTo('info')">
-      Más información
+
+    <button class="hero-cta" (click)="scrollTo('countdown')">
+      {{ i18n.T().hero.ctaButton }}
       <i class="pi pi-chevron-down"></i>
     </button>
   </div>
 
-  <div class="hero-scroll-indicator" (click)="scrollTo('info')">
-    <div class="scroll-mouse">
-      <div class="scroll-wheel"></div>
-    </div>
+  <div class="hero-scroll-indicator" (click)="scrollTo('countdown')">
+    <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
   </div>
 </section>
 
 <!-- ===== COUNTDOWN ===== -->
 <section class="countdown-section" id="countdown">
+  <!-- Futbol background photo -->
+  <div class="countdown-photo-bg">
+    <img src="/img/futbol.jpeg" alt="" aria-hidden="true">
+  </div>
   <div class="section-container">
-    <div class="countdown-label">Quedan...</div>
+    <div class="countdown-label">{{ i18n.T().countdown.label }}</div>
     <div class="countdown-grid">
       <div class="countdown-item animate-on-scroll">
-        <div class="countdown-number-wrap">
-          <span class="countdown-number">{{ padZero(days()) }}</span>
-        </div>
-        <span class="countdown-unit">días</span>
+        <div class="countdown-number-wrap"><span class="countdown-number">{{ pad(days()) }}</span></div>
+        <span class="countdown-unit">{{ i18n.T().countdown.days }}</span>
       </div>
       <div class="countdown-separator">:</div>
-      <div class="countdown-item animate-on-scroll" style="transition-delay: 0.1s">
-        <div class="countdown-number-wrap">
-          <span class="countdown-number">{{ padZero(hours()) }}</span>
-        </div>
-        <span class="countdown-unit">horas</span>
+      <div class="countdown-item animate-on-scroll" style="transition-delay:.1s">
+        <div class="countdown-number-wrap"><span class="countdown-number">{{ pad(hours()) }}</span></div>
+        <span class="countdown-unit">{{ i18n.T().countdown.hours }}</span>
       </div>
       <div class="countdown-separator">:</div>
-      <div class="countdown-item animate-on-scroll" style="transition-delay: 0.2s">
-        <div class="countdown-number-wrap">
-          <span class="countdown-number">{{ padZero(minutes()) }}</span>
-        </div>
-        <span class="countdown-unit">minutos</span>
+      <div class="countdown-item animate-on-scroll" style="transition-delay:.2s">
+        <div class="countdown-number-wrap"><span class="countdown-number">{{ pad(minutes()) }}</span></div>
+        <span class="countdown-unit">{{ i18n.T().countdown.minutes }}</span>
       </div>
       <div class="countdown-separator">:</div>
-      <div class="countdown-item animate-on-scroll" style="transition-delay: 0.3s">
-        <div class="countdown-number-wrap">
-          <span class="countdown-number seconds-number">{{ padZero(seconds()) }}</span>
-        </div>
-        <span class="countdown-unit">segundos</span>
+      <div class="countdown-item animate-on-scroll" style="transition-delay:.3s">
+        <div class="countdown-number-wrap"><span class="countdown-number seconds-number">{{ pad(seconds()) }}</span></div>
+        <span class="countdown-unit">{{ i18n.T().countdown.seconds }}</span>
       </div>
     </div>
-    <p class="countdown-subtitle animate-on-scroll" style="transition-delay: 0.4s">
-      para el día más especial de nuestras vidas
+    <p class="countdown-subtitle animate-on-scroll" style="transition-delay:.4s">
+      {{ i18n.T().countdown.subtitle }}
     </p>
   </div>
 </section>
@@ -94,37 +98,74 @@
 <section class="info-section" id="info">
   <div class="section-container">
     <div class="section-header animate-on-scroll">
-      <span class="section-eyebrow">La celebración</span>
-      <h2 class="section-title">Detalles del día</h2>
-      <p class="section-subtitle">Todo lo que necesitas saber para acompañarnos en este momento tan especial</p>
+      <span class="section-eyebrow">{{ i18n.T().info.eyebrow }}</span>
+      <h2 class="section-title">{{ i18n.T().info.title }}</h2>
+      <p class="section-subtitle">{{ i18n.T().info.subtitle }}</p>
+    </div>
+    <div class="info-cards">
+      <div class="info-card animate-on-scroll" style="transition-delay:.1s">
+        <div class="info-card-icon"><i class="pi pi-calendar"></i></div>
+        <h3>{{ i18n.T().info.date.label }}</h3>
+        <p class="info-card-main">{{ i18n.T().info.date.main }}</p>
+        <p class="info-card-sub">{{ i18n.T().info.date.sub }}</p>
+      </div>
+      <div class="info-card animate-on-scroll" style="transition-delay:.2s">
+        <div class="info-card-icon"><i class="pi pi-clock"></i></div>
+        <h3>{{ i18n.T().info.time.label }}</h3>
+        <p class="info-card-main">{{ i18n.T().info.time.main }}</p>
+        <p class="info-card-sub">{{ i18n.T().info.time.sub }}</p>
+      </div>
+      <div class="info-card animate-on-scroll" style="transition-delay:.3s">
+        <div class="info-card-icon"><i class="pi pi-map-marker"></i></div>
+        <h3>{{ i18n.T().info.place.label }}</h3>
+        <p class="info-card-main">{{ i18n.T().info.place.main }}</p>
+        <p class="info-card-sub">{{ i18n.T().info.place.sub }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PHOTO GALLERY ===== -->
+<section class="gallery-section" id="galeria">
+  <div class="section-container">
+    <div class="section-header animate-on-scroll">
+      <span class="section-eyebrow">{{ i18n.T().gallery.eyebrow }}</span>
+      <h2 class="section-title">{{ i18n.T().gallery.title }}</h2>
+      <p class="section-subtitle">{{ i18n.T().gallery.subtitle }}</p>
     </div>
 
-    <div class="info-cards">
-      <div class="info-card animate-on-scroll" style="transition-delay: 0.1s">
-        <div class="info-card-icon">
-          <i class="pi pi-calendar"></i>
+    <div class="photos-grid animate-on-scroll" style="transition-delay:.1s">
+      <!-- Kiss Me Here - wide -->
+      <div class="photo-item photo-wide">
+        <img src="/img/kiss.jpeg" alt="Judit i Héctor" loading="lazy">
+        <div class="photo-overlay">
+          <span class="photo-caption">Kiss Me Here</span>
         </div>
-        <h3>Fecha</h3>
-        <p class="info-card-main">Viernes, 2 de octubre</p>
-        <p class="info-card-sub">2026</p>
       </div>
-
-      <div class="info-card animate-on-scroll" style="transition-delay: 0.2s">
-        <div class="info-card-icon">
-          <i class="pi pi-clock"></i>
-        </div>
-        <h3>Hora</h3>
-        <p class="info-card-main">17:30 Convocatoria</p>
-        <p class="info-card-sub">18:00 Ceremonia</p>
+      <!-- Ciudad -->
+      <div class="photo-item">
+        <img src="/img/ciudad.jpeg" alt="Judit i Héctor" loading="lazy">
+        <div class="photo-overlay"></div>
       </div>
-
-      <div class="info-card animate-on-scroll" style="transition-delay: 0.3s">
-        <div class="info-card-icon">
-          <i class="pi pi-map-marker"></i>
+      <!-- Montanya -->
+      <div class="photo-item">
+        <img src="/img/montanya.jpeg" alt="Judit i Héctor" loading="lazy">
+        <div class="photo-overlay"></div>
+      </div>
+      <!-- Playa -->
+      <div class="photo-item photo-tall">
+        <img src="/img/playa.jpeg" alt="Judit i Héctor" loading="lazy">
+        <div class="photo-overlay"></div>
+      </div>
+      <!-- Futbol - wide, FCB themed -->
+      <div class="photo-item photo-fcb">
+        <img src="/img/futbol.jpeg" alt="Més que un casament" loading="lazy">
+        <div class="photo-overlay photo-overlay-fcb">
+          <div class="fcb-badge">
+            <img src="/img/escudo.png" alt="Escudo">
+          </div>
+          <span class="photo-caption-fcb">Més que un casament</span>
         </div>
-        <h3>Lugar</h3>
-        <p class="info-card-main">Masia Ca N'Illa</p>
-        <p class="info-card-sub">La Garriga, Barcelona</p>
       </div>
     </div>
   </div>
@@ -134,16 +175,16 @@
 <section class="planning-section" id="planning">
   <div class="section-container">
     <div class="section-header animate-on-scroll">
-      <span class="section-eyebrow">El programa</span>
-      <h2 class="section-title">Planning del día</h2>
-      <p class="section-subtitle">Así será nuestra jornada. ¡Prometemos que será un día para recordar!</p>
+      <span class="section-eyebrow">{{ i18n.T().planning.eyebrow }}</span>
+      <h2 class="section-title">{{ i18n.T().planning.title }}</h2>
+      <p class="section-subtitle">{{ i18n.T().planning.subtitle }}</p>
     </div>
 
-    <div class="timeline-wrapper animate-on-scroll" style="transition-delay: 0.2s">
-      <p-timeline [value]="schedule" layout="vertical" align="alternate">
-        <ng-template #marker let-item>
-          <div class="timeline-marker" [style.background]="item.color">
-            <i class="pi {{ item.icon }}"></i>
+    <div class="timeline-wrapper animate-on-scroll" style="transition-delay:.2s">
+      <p-timeline [value]="i18n.T().planning.items" layout="vertical" align="alternate">
+        <ng-template #marker let-item let-i="index">
+          <div class="timeline-marker" [style.background]="scheduleColors[i]">
+            <i class="pi {{ scheduleIcons[i] }}"></i>
           </div>
         </ng-template>
         <ng-template #content let-item>
@@ -162,9 +203,9 @@
 <section class="location-section" id="location">
   <div class="section-container">
     <div class="section-header animate-on-scroll">
-      <span class="section-eyebrow">Cómo llegar</span>
-      <h2 class="section-title">La Masia</h2>
-      <p class="section-subtitle">Masia Ca N'Illa se encuentra en el corazón de La Garriga, rodeada de naturaleza</p>
+      <span class="section-eyebrow">{{ i18n.T().location.eyebrow }}</span>
+      <h2 class="section-title">{{ i18n.T().location.title }}</h2>
+      <p class="section-subtitle">{{ i18n.T().location.subtitle }}</p>
     </div>
 
     <div class="location-content">
@@ -172,45 +213,46 @@
         <div class="location-detail">
           <div class="location-icon"><i class="pi pi-map-marker"></i></div>
           <div>
-            <h4>Dirección</h4>
-            <p>Masia Ca N'Illa<br>La Garriga, Barcelona</p>
+            <h4>{{ i18n.T().location.address.label }}</h4>
+            <p>{{ i18n.T().location.address.text }}</p>
           </div>
         </div>
         <div class="location-detail">
           <div class="location-icon"><i class="pi pi-car"></i></div>
           <div>
-            <h4>En coche</h4>
-            <p>Autopista AP-7, salida La Garriga. Acceso indicado desde el pueblo.</p>
+            <h4>{{ i18n.T().location.car.label }}</h4>
+            <p>{{ i18n.T().location.car.text }}</p>
           </div>
         </div>
         <div class="location-detail">
           <div class="location-icon"><i class="pi pi-ticket"></i></div>
           <div>
-            <h4>En tren</h4>
-            <p>Línea R3 (Rodalies) desde Barcelona Passeig de Gràcia hasta La Garriga.</p>
+            <h4>{{ i18n.T().location.train.label }}</h4>
+            <p>{{ i18n.T().location.train.text }}</p>
           </div>
         </div>
-        <a
-          href="https://maps.google.com/?q=Masia+Ca+N'Illa+La+Garriga"
-          target="_blank"
-          rel="noopener"
-          class="map-button">
+        <a href="https://maps.google.com/?q=Masia+Ca+N'Illa+La+Garriga"
+          target="_blank" rel="noopener" class="map-button">
           <i class="pi pi-external-link"></i>
-          Ver en Google Maps
+          {{ i18n.T().location.mapsButton }}
         </a>
       </div>
 
-      <div class="location-map animate-on-scroll" style="transition-delay: 0.2s">
-        <div class="map-placeholder">
-          <div class="map-pin-animation">
-            <div class="map-pin">
-              <i class="pi pi-map-marker"></i>
-            </div>
-            <div class="map-pin-shadow"></div>
+      <!-- Masia photos from their website -->
+      <div class="location-masia animate-on-scroll" style="transition-delay:.2s">
+        <div class="masia-photos">
+          <div class="masia-photo masia-photo-main">
+            <img src="https://www.masiacanilla.com/wp-content/uploads/2024/02/0120_Ca-nilla_2023-scaled.jpg"
+              alt="Masia Ca N'Illa" loading="lazy">
           </div>
-          <p class="map-place-name">Masia Ca N'Illa</p>
-          <p class="map-place-sub">La Garriga · Barcelona</p>
+          <div class="masia-photo masia-photo-garden">
+            <img src="https://www.masiacanilla.com/wp-content/uploads/2024/02/022-Jardi-scaled.jpg"
+              alt="Jardins Masia Ca N'Illa" loading="lazy">
+          </div>
         </div>
+        <a href="https://www.masiacanilla.com" target="_blank" rel="noopener" class="masia-web-link">
+          <i class="pi pi-globe"></i> masiacanilla.com
+        </a>
       </div>
     </div>
   </div>
@@ -219,31 +261,28 @@
 <!-- ===== MEDIA CTA ===== -->
 <section class="media-cta-section">
   <div class="media-cta-content animate-on-scroll">
-    <div class="media-cta-icon">
-      <i class="pi pi-camera"></i>
-    </div>
-    <h2>Comparte tus fotos</h2>
-    <p>
-      Queremos ver el día desde vuestros ojos. Sube tus fotos y vídeos,
-      y unos días después nosotros compartiremos todos los recuerdos con vosotros.
-    </p>
+    <div class="media-cta-icon"><i class="pi pi-camera"></i></div>
+    <h2>{{ i18n.T().mediaCta.title }}</h2>
+    <p>{{ i18n.T().mediaCta.text }}</p>
     <a routerLink="/media" class="media-cta-button">
       <i class="pi pi-upload"></i>
-      Subir fotos
+      {{ i18n.T().mediaCta.button }}
     </a>
   </div>
 </section>
 
 <!-- ===== FOOTER ===== -->
 <footer class="site-footer">
-  <div class="footer-hearts" aria-hidden="true">
-    <span>&#9825;</span>
-    <span>&#9825;</span>
-    <span>&#9825;</span>
+  <div class="footer-escudo-wrap">
+    <img src="/img/escudo.png" alt="Escudo Judit i Héctor" class="footer-escudo">
   </div>
-  <p class="footer-names">Judit & Héctor</p>
-  <p class="footer-date">2 · Octubre · 2026</p>
+  <p class="footer-names">Judit &amp; Héctor</p>
+  <p class="footer-date">{{ i18n.T().hero.date }}</p>
   <p class="footer-location">Masia Ca N'Illa · La Garriga</p>
-  <div class="footer-divider"></div>
-  <p class="footer-love">Hecho con <i class="pi pi-heart-fill"></i> para el día más especial</p>
+  <div class="footer-blaugrana" aria-hidden="true">
+    @for (s of [0,1,2,3,4,5,6,7]; track s) {
+      <div class="fb-stripe" [class.fb-blau]="s % 2 === 0" [class.fb-grana]="s % 2 !== 0"></div>
+    }
+  </div>
+  <p class="footer-love">{{ i18n.T().footer.love }} <i class="pi pi-heart-fill"></i></p>
 </footer>

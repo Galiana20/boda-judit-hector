@@ -1,11 +1,26 @@
-<nav class="app-nav">
-  <a routerLink="/" class="nav-brand">J <span class="nav-ampersand">&</span> H</a>
-  <div class="nav-links">
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">Inicio</a>
-    <a routerLink="/media" routerLinkActive="active" class="nav-link nav-link-media">
-      <i class="pi pi-camera"></i> Fotos
+@if (!auth.isAuthenticated()) {
+  <app-splash />
+} @else {
+  <nav class="app-nav">
+    <a routerLink="/" class="nav-brand">
+      <img src="/img/escudo.png" alt="J&H" class="nav-escudo">
+      <span class="nav-brand-text">J <span class="nav-ampersand">&</span> H</span>
     </a>
-  </div>
-</nav>
 
-<router-outlet />
+    <div class="nav-links">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">
+        {{ i18n.T().nav.home }}
+      </a>
+      <a routerLink="/media" routerLinkActive="active" class="nav-link nav-link-media">
+        <i class="pi pi-camera"></i> {{ i18n.T().nav.photos }}
+      </a>
+      <div class="lang-switcher">
+        <button class="lang-btn" [class.active]="i18n.lang() === 'ca'" (click)="setLang('ca')">CA</button>
+        <span class="lang-sep">|</span>
+        <button class="lang-btn" [class.active]="i18n.lang() === 'es'" (click)="setLang('es')">ES</button>
+      </div>
+    </div>
+  </nav>
+
+  <router-outlet />
+}
