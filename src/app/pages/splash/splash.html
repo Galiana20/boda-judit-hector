@@ -1,8 +1,7 @@
-<!-- Vertical blaugrana stripes background -->
+<!-- Vertical blaugrana background: half blue / half red -->
 <div class="splash-stripes" aria-hidden="true">
-  @for (stripe of [0,1,2,3,4,5,6,7,8,9,10,11]; track stripe) {
-    <div class="stripe" [class.stripe-blau]="stripe % 2 === 0" [class.stripe-grana]="stripe % 2 !== 0"></div>
-  }
+  <div class="stripe stripe-blau"></div>
+  <div class="stripe stripe-grana"></div>
 </div>
 
 <!-- Language switcher -->

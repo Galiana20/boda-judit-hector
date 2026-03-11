@@ -146,33 +146,6 @@
   </div>
 </section>
 
-<!-- Gallery -->
-<section class="gallery-section">
-  <div class="gallery-container">
-    <div class="gallery-header">
-      <span class="section-eyebrow">{{ i18n.T().media.galleryEyebrow }}</span>
-      <h2>{{ i18n.T().media.galleryTitle }}</h2>
-      <p>{{ i18n.T().media.galleryText }}</p>
-    </div>
-    <div class="gallery-coming-soon">
-      <div class="gallery-grid">
-        @for (item of mockGallery; track item.id) {
-          <div class="gallery-item" [style.background]="item.color">
-            <i class="pi {{ item.icon }}"></i>
-          </div>
-        }
-      </div>
-      <div class="gallery-overlay">
-        <div class="gallery-overlay-content">
-          <img src="/img/escudo.png" alt="Escudo" class="gallery-escudo">
-          <h3>{{ i18n.T().media.comingSoonTitle }}</h3>
-          <p>{{ i18n.T().media.comingSoonText }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- Footer -->
 <footer class="media-footer">
   <p>Judit &amp; Héctor · 2 d'Octubre de 2026</p>
