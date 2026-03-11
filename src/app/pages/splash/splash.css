@@ -16,19 +16,36 @@
   z-index: 0;
   background:
     repeating-linear-gradient(
-      168deg,
-      rgba(0,0,0,0.04) 0px,
-      transparent 2px,
-      transparent 18px,
-      rgba(0,0,0,0.03) 20px
+      172deg,
+      rgba(255,220,140,0.07) 0px,
+      transparent 1px,
+      transparent 8px,
+      rgba(180,110,40,0.08) 9px,
+      transparent 10px,
+      transparent 22px,
+      rgba(255,200,100,0.05) 23px,
+      transparent 24px,
+      transparent 40px
+    ),
+    repeating-linear-gradient(
+      170deg,
+      rgba(0,0,0,0.05) 0px,
+      transparent 3px,
+      transparent 60px,
+      rgba(0,0,0,0.04) 63px,
+      transparent 66px,
+      transparent 120px
     ),
     linear-gradient(
-      160deg,
-      #2E1E12 0%,
-      #4A3020 25%,
-      #5A3D2A 50%,
-      #4A3020 75%,
-      #3D2B1F 100%
+      175deg,
+      #8B5E3C 0%,
+      #A0724A 15%,
+      #C49060 30%,
+      #A87848 45%,
+      #B8835A 60%,
+      #9A6840 75%,
+      #A87848 90%,
+      #8B5E3C 100%
     );
 }
 
