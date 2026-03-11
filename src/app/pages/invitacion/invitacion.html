@@ -87,16 +87,16 @@
                       </div>
                     }
                   </div>
-                  <button type="button" class="acomp-toggle"
-                    [class.acomp-toggle-off]="!acomp.value.asiste"
-                    (click)="toggleAsiste($index)"
-                    [title]="acomp.value.asiste ? i18n.T().inv.companionAttending : i18n.T().inv.companionNotAttending">
-                    @if (acomp.value.asiste) {
-                      <i class="pi pi-check"></i>
-                    } @else {
-                      <i class="pi pi-times"></i>
-                    }
-                  </button>
+                  <div class="acomp-slide-toggle"
+                    [class.toggle-on]="acomp.value.asiste"
+                    (click)="toggleAsiste($index)">
+                    <div class="slide-track">
+                      <div class="slide-thumb"></div>
+                    </div>
+                    <span class="slide-label">
+                      {{ acomp.value.asiste ? i18n.T().inv.companionAttending : i18n.T().inv.companionNotAttending }}
+                    </span>
+                  </div>
                 </div>
               }
             </div>
