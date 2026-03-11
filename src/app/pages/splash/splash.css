@@ -9,25 +9,27 @@
   overflow: hidden;
 }
 
-/* ---- STRIPES BACKGROUND ---- */
-.splash-stripes {
+/* ---- WOOD BACKGROUND ---- */
+.splash-bg {
   position: absolute;
   inset: 0;
-  display: flex;
   z-index: 0;
-}
-
-.stripe {
-  flex: 1;
-  opacity: 1;
-}
-
-.stripe-blau {
-  background: #3a6ea8;
-}
-
-.stripe-grana {
-  background: #a04060;
+  background:
+    repeating-linear-gradient(
+      168deg,
+      rgba(0,0,0,0.04) 0px,
+      transparent 2px,
+      transparent 18px,
+      rgba(0,0,0,0.03) 20px
+    ),
+    linear-gradient(
+      160deg,
+      #2E1E12 0%,
+      #4A3020 25%,
+      #5A3D2A 50%,
+      #4A3020 75%,
+      #3D2B1F 100%
+    );
 }
 
 /* Luminous radial overlay — golden glow at center, subtle dark at edges */
