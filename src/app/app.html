@@ -8,11 +8,11 @@
     </a>
 
     <div class="nav-links">
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link nav-link-home">
         {{ i18n.T().nav.home }}
       </a>
       <a routerLink="/galeria" routerLinkActive="active" class="nav-link">
-        <i class="pi pi-images"></i> {{ i18n.T().nav.gallery }}
+        <i class="pi pi-images"></i> <span class="nav-link-label">{{ i18n.T().nav.gallery }}</span>
       </a>
       <a routerLink="/media" routerLinkActive="active" class="nav-link nav-link-media">
         <i class="pi pi-camera"></i> {{ i18n.T().nav.photos }}

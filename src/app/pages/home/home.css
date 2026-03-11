@@ -427,13 +427,33 @@
   .photo-item:nth-child(3),
   .photo-item:nth-child(4),
   .photo-item:nth-child(5) { aspect-ratio: 1; }
-  .location-content { grid-template-columns: 1fr; gap: 40px; }
-  .info-section, .planning-section, .location-section, .media-cta-section, .gallery-section { padding: 64px 24px; }
+  .location-content { grid-template-columns: 1fr; gap: 32px; }
+  .info-section, .planning-section, .location-section, .media-cta-section, .gallery-section { padding: 64px 20px; }
+  .countdown-section { padding: 64px 20px; }
+  .timeline-card { padding: 18px 20px; }
+  .media-cta-content h2 { font-size: 1.9rem; }
 }
+
 @media (max-width: 480px) {
   .hero-section { padding: 80px 16px 60px; }
+  .hero-escudo { width: min(260px, 78vw); }
   .countdown-number { font-size: 2rem; }
   .countdown-number-wrap { min-width: 68px; padding: 12px 14px; }
+  .countdown-item { min-width: 68px; }
+  .countdown-section { padding: 48px 16px; }
   .photos-grid { grid-template-columns: 1fr; }
   .photo-item:nth-child(n) { grid-column: 1; aspect-ratio: 4/3; }
+  .info-section, .planning-section, .location-section, .media-cta-section, .gallery-section { padding: 48px 16px; }
+  .timeline-card { padding: 14px 16px; }
+  .timeline-time { font-size: 1.2rem; }
+  .timeline-event { font-size: 1rem; }
+  .timeline-marker { width: 36px; height: 36px; }
+  .timeline-marker .pi { font-size: 0.85rem; }
+  .media-cta-content h2 { font-size: 1.5rem; }
+  .hero-cta { padding: 11px 24px; font-size: 0.75rem; }
+  .section-container { padding: 0 16px; }
+  .info-cards { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .info-card { padding: 24px 18px; }
+  .masia-photo img { height: 160px; }
+  .location-detail { gap: 12px; }
 }

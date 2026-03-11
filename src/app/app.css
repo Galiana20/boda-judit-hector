@@ -235,6 +235,14 @@
   .app-nav { padding: 10px 16px; }
   .nav-brand-text { display: none; }
   .nav-escudo { height: 36px; }
-  .nav-links { gap: 12px; }
+  .nav-links { gap: 10px; }
   .lang-switcher { padding-left: 10px; }
+}
+
+@media (max-width: 480px) {
+  .nav-link-home { display: none; }
+  .nav-link-label { display: none; }
+  .nav-links { gap: 8px; }
+  .lang-switcher { padding-left: 6px; }
+  .nav-admin-group { padding-left: 8px; }
 }
