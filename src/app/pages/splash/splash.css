@@ -9,44 +9,49 @@
   overflow: hidden;
 }
 
-/* ---- WOOD BACKGROUND ---- */
-.splash-bg {
+/* ---- POLAROID SCATTER BACKGROUND ---- */
+.polaroid-scatter {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background:
-    repeating-linear-gradient(
-      172deg,
-      rgba(255,220,140,0.07) 0px,
-      transparent 1px,
-      transparent 8px,
-      rgba(180,110,40,0.08) 9px,
-      transparent 10px,
-      transparent 22px,
-      rgba(255,200,100,0.05) 23px,
-      transparent 24px,
-      transparent 40px
-    ),
-    repeating-linear-gradient(
-      170deg,
-      rgba(0,0,0,0.05) 0px,
-      transparent 3px,
-      transparent 60px,
-      rgba(0,0,0,0.04) 63px,
-      transparent 66px,
-      transparent 120px
-    ),
-    linear-gradient(
-      175deg,
-      #8B5E3C 0%,
-      #A0724A 15%,
-      #C49060 30%,
-      #A87848 45%,
-      #B8835A 60%,
-      #9A6840 75%,
-      #A87848 90%,
-      #8B5E3C 100%
-    );
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 10px;
+  padding: 8px;
+}
+
+.polaroid {
+  background: #f8f5f0;
+  padding: 6px 6px 20px;
+  box-shadow:
+    2px 3px 10px rgba(0,0,0,0.5),
+    0 1px 3px rgba(0,0,0,0.25);
+  overflow: hidden;
+  min-width: 0;
+}
+
+.polaroid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Rotaciones alternadas para efecto esparcido */
+.polaroid:nth-child(7n+1) { transform: rotate(-7deg);  }
+.polaroid:nth-child(7n+2) { transform: rotate(5deg);   }
+.polaroid:nth-child(7n+3) { transform: rotate(-11deg); }
+.polaroid:nth-child(7n+4) { transform: rotate(3deg);   }
+.polaroid:nth-child(7n+5) { transform: rotate(-5deg);  }
+.polaroid:nth-child(7n+6) { transform: rotate(9deg);   }
+.polaroid:nth-child(7n+7) { transform: rotate(-3deg);  }
+
+@media (max-width: 600px) {
+  .polaroid-scatter {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(9, 1fr);
+  }
 }
 
 /* Luminous radial overlay — golden glow at center, subtle dark at edges */
@@ -55,8 +60,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 70% at 50% 50%, rgba(196, 151, 74, 0.28) 0%, transparent 70%),
-    linear-gradient(to bottom, rgba(0,0,0,0.30) 0%, rgba(0,0,0,0.18) 50%, rgba(0,0,0,0.30) 100%);
+    radial-gradient(ellipse 60% 70% at 50% 50%, rgba(196, 151, 74, 0.18) 0%, transparent 65%),
+    linear-gradient(to bottom, rgba(10,5,2,0.72) 0%, rgba(10,5,2,0.62) 50%, rgba(10,5,2,0.72) 100%);
   z-index: 1;
 }
 
@@ -120,12 +125,7 @@
 }
 
 .escudo-glow {
-  position: absolute;
-  inset: -70px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 220, 120, 0.55) 0%, rgba(196, 151, 74, 0.25) 45%, transparent 70%);
-  animation: heartbeat 3s ease-in-out infinite;
-  pointer-events: none;
+  display: none;
 }
 
 .escudo-img {

@@ -239,66 +239,31 @@
 /* ======= PHOTO GALLERY ======= */
 .gallery-section { padding: 96px 24px; background: var(--cream-dark); }
 
-.photos-grid {
+.photos-mosaic {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 14px;
-  max-width: 1000px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
-/* kiss.jpeg - wide top */
-.photo-item:nth-child(1) { grid-column: 1 / 3; }
-/* ciudad - top right */
-.photo-item:nth-child(2) { grid-column: 3; }
-/* montanya */
-.photo-item:nth-child(3) { grid-column: 1; }
-/* playa */
-.photo-item:nth-child(4) { grid-column: 2; }
-/* futbol - wide bottom right */
-.photo-item:nth-child(5) { grid-column: 3; grid-row: 2; }
-
-.photo-item {
-  position: relative; overflow: hidden; border-radius: 16px;
-  background: var(--cream); box-shadow: var(--shadow-soft);
-  cursor: pointer; aspect-ratio: 4/3;
+.pm-item {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
 }
-.photo-item:nth-child(2),
-.photo-item:nth-child(3),
-.photo-item:nth-child(4) { aspect-ratio: 3/4; }
 
-.photo-item img {
-  width: 100%; height: 100%; object-fit: cover;
+.pm-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
   transition: transform 0.5s ease;
 }
-.photo-item:hover img { transform: scale(1.04); }
 
-.photo-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 60%);
-  opacity: 0; transition: opacity 0.3s ease;
-  display: flex; align-items: flex-end; padding: 20px;
-}
-.photo-item:hover .photo-overlay { opacity: 1; }
-
-.photo-caption {
-  font-family: var(--font-decorative); font-style: italic;
-  font-size: 1.1rem; color: var(--white);
-  text-shadow: 0 2px 8px rgba(0,0,0,.4);
-}
-
-/* FCB photo special overlay */
-.photo-overlay-fcb {
-  background: linear-gradient(to top, rgba(0,20,60,0.75) 0%, rgba(100,0,40,0.45) 60%, transparent 100%);
-  opacity: 0; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
-}
-.photo-item:hover .photo-overlay-fcb { opacity: 1; }
-.fcb-badge img { width: 60px; height: auto; filter: drop-shadow(0 4px 12px rgba(0,0,0,.4)); }
-.photo-caption-fcb {
-  font-family: var(--font-heading); font-style: italic; font-size: 1rem;
-  color: var(--gold-light); text-shadow: 0 2px 8px rgba(0,0,0,.5);
-}
+.pm-item:hover img { transform: scale(1.04); }
 
 /* ======= PLANNING ======= */
 .planning-section { padding: 96px 24px; background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 100%); }
@@ -414,19 +379,7 @@
   .countdown-grid { gap: 10px; }
   .countdown-item { min-width: 78px; }
   .countdown-number-wrap { min-width: 78px; padding: 14px 18px; }
-  .photos-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto;
-  }
-  .photo-item:nth-child(1) { grid-column: 1 / 3; }
-  .photo-item:nth-child(2) { grid-column: 1; }
-  .photo-item:nth-child(3) { grid-column: 2; }
-  .photo-item:nth-child(4) { grid-column: 1; }
-  .photo-item:nth-child(5) { grid-column: 2; }
-  .photo-item:nth-child(2),
-  .photo-item:nth-child(3),
-  .photo-item:nth-child(4),
-  .photo-item:nth-child(5) { aspect-ratio: 1; }
+  .photos-mosaic { grid-template-columns: repeat(4, 1fr); }
   .location-content { grid-template-columns: 1fr; gap: 32px; }
   .info-section, .planning-section, .location-section, .media-cta-section, .gallery-section { padding: 64px 20px; }
   .countdown-section { padding: 64px 20px; }
@@ -441,8 +394,7 @@
   .countdown-number-wrap { min-width: 68px; padding: 12px 14px; }
   .countdown-item { min-width: 68px; }
   .countdown-section { padding: 48px 16px; }
-  .photos-grid { grid-template-columns: 1fr; }
-  .photo-item:nth-child(n) { grid-column: 1; aspect-ratio: 4/3; }
+  .photos-mosaic { grid-template-columns: repeat(2, 1fr); }
   .info-section, .planning-section, .location-section, .media-cta-section, .gallery-section { padding: 48px 16px; }
   .timeline-card { padding: 14px 16px; }
   .timeline-time { font-size: 1.2rem; }
