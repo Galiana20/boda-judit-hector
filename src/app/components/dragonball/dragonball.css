@@ -46,6 +46,18 @@
   z-index: 9999;
   animation: toastIn 0.3s ease;
   pointer-events: none;
+  max-width: calc(100vw - 32px);
+}
+
+@media (max-width: 480px) {
+  .db-wrapper { width: 42px; height: 42px; }
+  .db-toast {
+    font-size: 0.78rem;
+    padding: 8px 16px;
+    white-space: normal;
+    text-align: center;
+    bottom: 70px;
+  }
 }
 
 @keyframes dbFloat {

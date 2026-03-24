@@ -15,6 +15,8 @@
   text-align: center;
   max-width: 480px;
   width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
   padding: 40px 32px 36px;
   background: radial-gradient(ellipse at center, #1a0a00 0%, #0a0400 100%);
   border: 2px solid rgba(255, 180, 0, 0.5);
@@ -148,4 +150,12 @@
 @keyframes fadeIn {
   from { opacity: 0; }
   to   { opacity: 1; }
+}
+
+@media (max-width: 480px) {
+  .victory-modal { padding: 28px 20px 24px; }
+  .victory-img   { width: 140px; }
+  .victory-balls { gap: 5px; }
+  .victory-ball  { width: 28px; height: 28px; }
+  .victory-btn   { padding: 12px 28px; font-size: 0.85rem; }
 }

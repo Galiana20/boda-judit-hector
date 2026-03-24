@@ -17,24 +17,30 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  gap: 10px;
-  padding: 8px;
+  gap: 8px;
+  padding: 6px;
+  align-items: stretch;
 }
 
 .polaroid {
   background: #f8f5f0;
-  padding: 6px 6px 20px;
+  padding: 5px 5px 18px;
   box-shadow:
     2px 3px 10px rgba(0,0,0,0.5),
     0 1px 3px rgba(0,0,0,0.25);
   overflow: hidden;
   min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .polaroid img {
+  flex: 1;
   width: 100%;
-  height: 100%;
+  min-height: 0;
   object-fit: cover;
+  object-position: 50% 15%;
   display: block;
 }
 
@@ -49,8 +55,16 @@
 
 @media (max-width: 600px) {
   .polaroid-scatter {
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(9, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    gap: 6px;
+  }
+}
+
+@media (max-width: 380px) {
+  .polaroid-scatter {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(12, 1fr);
   }
 }
 

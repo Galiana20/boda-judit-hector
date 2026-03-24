@@ -433,6 +433,11 @@
 .cat-bubble-left  { left: 0; }
 .cat-bubble-right { right: 0; }
 
+@media (max-width: 360px) {
+  .cat-bubble-left  { left: 0; max-width: 120px; }
+  .cat-bubble-right { right: 0; max-width: 120px; }
+}
+
 @media (max-width: 768px) {
   .footer-cat { height: 120px; }
   .cat-bubble  { font-size: 0.75rem; max-width: 170px; }
