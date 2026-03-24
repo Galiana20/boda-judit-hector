@@ -33,7 +33,7 @@ export class InvitacionComponent implements OnInit, OnDestroy {
   auth = inject(AuthService);
   i18n = inject(I18nService);
 
-  private music = new Audio('/music/harry potter musica [T8D8vEcZrqM].mp3');
+  private music = new Audio('/music/Leaving Hogwarts.mp3');
 
   codigoInput = '';
   estado = signal<Estado>('access');
