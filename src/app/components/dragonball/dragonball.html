@@ -1,0 +1,15 @@
+@if (!collected) {
+  <div class="db-wrapper"
+    [style.top]="top"
+    [style.left]="left"
+    [style.right]="right"
+    [style.bottom]="bottom"
+    (click)="collect($event)">
+    <img [src]="imgSrc" [alt]="'Dragon Ball ' + ballId" class="db-img">
+    <div class="db-glow"></div>
+  </div>
+}
+
+@if (toast()) {
+  <div class="db-toast">{{ toast() }}</div>
+}

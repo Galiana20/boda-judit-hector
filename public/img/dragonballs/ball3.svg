@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <radialGradient id="bg" cx="38%" cy="35%" r="62%">
+      <stop offset="0%"   stop-color="#FFE066"/>
+      <stop offset="40%"  stop-color="#FF8C00"/>
+      <stop offset="100%" stop-color="#B84000"/>
+    </radialGradient>
+    <radialGradient id="shine" cx="33%" cy="28%" r="38%">
+      <stop offset="0%"   stop-color="rgba(255,255,230,0.8)"/>
+      <stop offset="100%" stop-color="rgba(255,255,230,0)"/>
+    </radialGradient>
+  </defs>
+  <circle cx="50" cy="50" r="47" fill="url(#bg)"/>
+  <circle cx="50" cy="50" r="47" fill="url(#shine)"/>
+  <polygon points="50.00,28.00 51.41,32.06 55.71,32.15 52.28,34.74 53.53,38.85 50.00,36.40 46.47,38.85 47.72,34.74 44.29,32.15 48.59,32.06" fill="#CC1100" opacity="0.92"/>
+  <polygon points="34.00,56.00 35.41,60.06 39.71,60.15 36.28,62.74 37.53,66.85 34.00,64.40 30.47,66.85 31.72,62.74 28.29,60.15 32.59,60.06" fill="#CC1100" opacity="0.92"/>
+  <polygon points="66.00,56.00 67.41,60.06 71.71,60.15 68.28,62.74 69.53,66.85 66.00,64.40 62.47,66.85 63.72,62.74 60.29,60.15 64.59,60.06" fill="#CC1100" opacity="0.92"/>
+  <circle cx="50" cy="50" r="47" fill="none" stroke="rgba(0,0,0,0.18)" stroke-width="1.5"/>
+</svg>

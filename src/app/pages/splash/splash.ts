@@ -24,7 +24,7 @@ export class SplashComponent {
     if (this.loading()) return;
     const code = this.codigo.trim();
     if (!code) {
-      this.triggerError('Introdueix el teu codi d\'invitació.');
+      this.triggerError(this.i18n.T().splash.errorEmpty);
       return;
     }
 
@@ -39,10 +39,10 @@ export class SplashComponent {
       this.auth.invitacioOberta.set(true);
       this.router.navigate(['/']);
     } else if (result === 'not-found') {
-      this.triggerError('Codi no trobat. Comprova que l\'has escrit bé.');
+      this.triggerError(this.i18n.T().splash.errorNotFound);
       this.codigo = '';
     } else if (result === 'error') {
-      this.triggerError('Error de connexió. Torna-ho a intentar.');
+      this.triggerError(this.i18n.T().splash.errorConnection);
     }
   }
 

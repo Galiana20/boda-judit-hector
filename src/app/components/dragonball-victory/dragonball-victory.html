@@ -1,0 +1,23 @@
+<div class="victory-backdrop" (click)="close()"></div>
+
+<div class="victory-modal">
+  <div class="victory-energy"></div>
+  <div class="victory-lightning">
+    @for (l of [0,1,2,3,4,5]; track l) {
+      <div class="lightning-bolt" [style.--i]="l"></div>
+    }
+  </div>
+
+  <img src="/img/Hector supersayan.png" alt="Héctor Super Saiyan" class="victory-img">
+
+  <h2 class="victory-title">{{ i18n.T().dragonball.victoryTitle }}</h2>
+  <p class="victory-text">{{ i18n.T().dragonball.victoryText }}</p>
+
+  <div class="victory-balls">
+    @for (b of [1,2,3,4,5,6,7]; track b) {
+      <img [src]="'/img/dragonballs/ball' + b + '.svg'" [alt]="'Ball ' + b" class="victory-ball">
+    }
+  </div>
+
+  <button class="victory-btn" (click)="close()">{{ i18n.T().dragonball.victoryClose }}</button>
+</div>

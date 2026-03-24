@@ -1,4 +1,4 @@
-import { Component, signal, inject, computed, OnInit } from '@angular/core';
+import { Component, signal, inject, computed, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { Firestore, doc, getDoc, updateDoc } from '@angular/fire/firestore';
@@ -27,11 +27,13 @@ type Estado = 'access' | 'loading' | 'ready' | 'modal';
   templateUrl: './invitacion.html',
   styleUrl: './invitacion.css'
 })
-export class InvitacionComponent implements OnInit {
+export class InvitacionComponent implements OnInit, OnDestroy {
   private firestore = inject(Firestore);
   private fb = inject(FormBuilder);
   auth = inject(AuthService);
   i18n = inject(I18nService);
+
+  private music = new Audio('/music/harry potter musica [T8D8vEcZrqM].mp3');
 
   codigoInput = '';
   estado = signal<Estado>('access');
@@ -59,6 +61,10 @@ export class InvitacionComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    this.music.loop = true;
+    this.music.volume = 0.4;
+    this.music.play().catch(() => {/* autoplay blocked, ignore */});
+
     const codiGuardat = this.auth.codigoGuardat();
     if (codiGuardat) {
       this.codigo.set(codiGuardat);
@@ -139,6 +145,11 @@ export class InvitacionComponent implements OnInit {
 
   closeModal(): void {
     this.auth.invitacioOberta.set(false);
+  }
+
+  ngOnDestroy(): void {
+    this.music.pause();
+    this.music.currentTime = 0;
   }
 
   async confirmar(): Promise<void> {

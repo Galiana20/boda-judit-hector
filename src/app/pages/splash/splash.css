@@ -83,11 +83,29 @@
   font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
   cursor: pointer;
   padding: 4px 8px;
   border-radius: 4px;
   transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.lang-flag {
+  width: 20px;
+  height: 14px;
+  object-fit: cover;
+  border-radius: 2px;
+  display: block;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.lang-btn.active .lang-flag,
+.lang-btn:hover .lang-flag {
+  opacity: 1;
 }
 
 .lang-btn.active {
@@ -314,6 +332,30 @@
   color: rgba(255, 255, 255, 0.45);
   font-style: italic;
   animation: fadeIn 0.3s ease;
+}
+
+/* ---- CATS ---- */
+.splash-cat {
+  position: absolute;
+  bottom: 0;
+  height: 120px;
+  width: auto;
+  pointer-events: none;
+  z-index: 2;
+  filter: drop-shadow(0 6px 18px rgba(0,0,0,0.5));
+  animation: float 5s ease-in-out infinite;
+}
+.splash-cat-left {
+  left: clamp(12px, 4vw, 60px);
+  animation-delay: 0s;
+}
+.splash-cat-right {
+  right: clamp(12px, 4vw, 60px);
+  animation-delay: -2.5s;
+}
+
+@media (max-width: 600px) {
+  .splash-cat { height: 80px; }
 }
 
 /* ---- MOTTO ---- */

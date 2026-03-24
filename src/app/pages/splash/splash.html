@@ -2,7 +2,6 @@
 <div class="polaroid-scatter" aria-hidden="true">
   <div class="polaroid"><img src="/img/kiss.jpeg" alt=""></div>
   <div class="polaroid"><img src="/img/photo01.jpeg" alt=""></div>
-  <div class="polaroid"><img src="/img/photo02.jpeg" alt=""></div>
   <div class="polaroid"><img src="/img/photo03.jpeg" alt=""></div>
   <div class="polaroid"><img src="/img/photo04.jpeg" alt=""></div>
   <div class="polaroid"><img src="/img/photo05.jpeg" alt=""></div>
@@ -10,6 +9,7 @@
   <div class="polaroid"><img src="/img/photo07.jpeg" alt=""></div>
   <div class="polaroid"><img src="/img/photo08.jpeg" alt=""></div>
   <div class="polaroid"><img src="/img/photo09.jpeg" alt=""></div>
+  <div class="polaroid"><img src="/img/photo02.jpeg" alt=""></div>
   <div class="polaroid"><img src="/img/photo10.jpeg" alt=""></div>
   <div class="polaroid"><img src="/img/photo11.jpeg" alt=""></div>
   <div class="polaroid"><img src="/img/photo12.jpeg" alt=""></div>
@@ -42,12 +42,12 @@
   <button
     class="lang-btn"
     [class.active]="i18n.lang() === 'ca'"
-    (click)="setLang('ca')">CA</button>
+    (click)="setLang('ca')"><img src="/img/flag-ca.svg" class="lang-flag" alt="CA"> CA</button>
   <span class="lang-sep">|</span>
   <button
     class="lang-btn"
     [class.active]="i18n.lang() === 'es'"
-    (click)="setLang('es')">ES</button>
+    (click)="setLang('es')"><img src="/img/flag-es.png" class="lang-flag" alt="ES"> ES</button>
 </div>
 
 <!-- Main content -->
@@ -79,7 +79,7 @@
         type="text"
         class="splash-input"
         [class.error]="error()"
-        placeholder="Codi d'invitació"
+        [placeholder]="i18n.T().splash.passwordPlaceholder"
         [(ngModel)]="codigo"
         (keydown)="onKeydown($event)"
         autocomplete="off"
@@ -93,7 +93,7 @@
 
     <button class="splash-btn" (click)="submit()" [disabled]="loading()">
       @if (loading()) {
-        <i class="pi pi-spin pi-spinner"></i> Cercant...
+        <i class="pi pi-spin pi-spinner"></i> {{ i18n.T().splash.searching }}
       } @else {
         {{ i18n.T().splash.enter }}
         <i class="pi pi-arrow-right"></i>

@@ -370,6 +370,80 @@
 .footer-love { font-family: var(--font-body); font-size: 0.78rem; color: rgba(255,255,255,.25); letter-spacing: 0.1em; }
 .footer-love .pi { color: var(--rose); font-size: 0.72rem; margin: 0 4px; animation: heartbeat 2s ease-in-out infinite; }
 
+/* ======= CATS (footer only) ======= */
+.footer-cat-wrap {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  z-index: 3;
+}
+.footer-cat-left-wrap  { left: clamp(20px, 5vw, 80px); }
+.footer-cat-right-wrap { right: clamp(20px, 5vw, 80px); }
+
+.footer-cat {
+  height: 160px;
+  width: auto;
+  filter: drop-shadow(0 4px 14px rgba(0,0,0,0.5)) brightness(1.1);
+  animation: float 5s ease-in-out infinite;
+  transition: transform 0.2s ease;
+  display: block;
+}
+.footer-cat-right-wrap .footer-cat { animation-delay: -2.5s; }
+.footer-cat-wrap:hover .footer-cat  { transform: scale(1.06); }
+
+/* Speech bubble */
+.cat-bubble {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  background: var(--white);
+  color: var(--text-dark);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  line-height: 1.4;
+  padding: 10px 14px;
+  border-radius: 16px;
+  white-space: nowrap;
+  max-width: 220px;
+  white-space: normal;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  opacity: 0;
+  transform: translateY(8px) scale(0.9);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 4;
+}
+.cat-bubble.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+/* triangle pointing down */
+.cat-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-top-color: var(--white);
+  border-bottom: none;
+}
+.cat-bubble-left  { left: 0; }
+.cat-bubble-right { right: 0; }
+
+@media (max-width: 768px) {
+  .footer-cat { height: 120px; }
+  .cat-bubble  { font-size: 0.75rem; max-width: 170px; }
+}
+@media (max-width: 480px) {
+  .footer-cat { height: 90px; }
+  .footer-cat-left-wrap  { left: 8px; }
+  .footer-cat-right-wrap { right: 8px; }
+  .cat-bubble { font-size: 0.7rem; max-width: 140px; }
+}
+
 /* ======= RESPONSIVE ======= */
 @media (max-width: 768px) {
   .hero-names { display: flex; flex-direction: column; gap: 6px; }

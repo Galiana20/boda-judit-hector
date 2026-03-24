@@ -6,6 +6,7 @@ import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TimelineModule } from 'primeng/timeline';
 import { I18nService } from '../../services/i18n.service';
+import { DragonBallComponent } from '../../components/dragonball/dragonball';
 
 interface Petal {
   id: number; left: number; size: number;
@@ -15,7 +16,7 @@ interface Petal {
 
 @Component({
   selector: 'app-home',
-  imports: [CommonModule, RouterLink, TimelineModule],
+  imports: [CommonModule, RouterLink, TimelineModule, DragonBallComponent],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
@@ -43,6 +44,9 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
 
   scheduleIcons = ['pi-users', 'pi-heart-fill', 'pi-star-fill', 'pi-gift', 'pi-bolt'];
   scheduleColors = ['#C4974A', '#A50044', '#7A9E7E', '#C4974A', '#004D98'];
+
+  activeCat = signal<number | null>(null);
+  private catPhraseIdx = [0, 0];
 
   photos = [
     { src: '/img/kiss.jpeg', caption: 'Kiss Me Here', wide: true },
@@ -92,4 +96,20 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   pad(n: number): string { return n.toString().padStart(2, '0'); }
+
+  catClick(catId: number): void {
+    if (this.activeCat() === catId) {
+      this.activeCat.set(null);
+      return;
+    }
+    const phrases = catId === 0 ? this.i18n.T().cats.cat1 : this.i18n.T().cats.cat2;
+    this.catPhraseIdx[catId] = (this.catPhraseIdx[catId] + 1) % phrases.length;
+    this.activeCat.set(catId);
+    setTimeout(() => { if (this.activeCat() === catId) this.activeCat.set(null); }, 4500);
+  }
+
+  catPhrase(catId: number): string {
+    const phrases = catId === 0 ? this.i18n.T().cats.cat1 : this.i18n.T().cats.cat2;
+    return phrases[this.catPhraseIdx[catId]];
+  }
 }

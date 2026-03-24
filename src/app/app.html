@@ -35,9 +35,9 @@
         <i class="pi pi-sign-out"></i>
       </button>
       <div class="lang-switcher">
-        <button class="lang-btn" [class.active]="i18n.lang() === 'ca'" (click)="setLang('ca')">CA</button>
+        <button class="lang-btn" [class.active]="i18n.lang() === 'ca'" (click)="setLang('ca')"><img src="/img/flag-ca.svg" class="lang-flag" alt="CA"> CA</button>
         <span class="lang-sep">|</span>
-        <button class="lang-btn" [class.active]="i18n.lang() === 'es'" (click)="setLang('es')">ES</button>
+        <button class="lang-btn" [class.active]="i18n.lang() === 'es'" (click)="setLang('es')"><img src="/img/flag-es.png" class="lang-flag" alt="ES"> ES</button>
       </div>
     </div>
   </nav>
@@ -46,5 +46,9 @@
 
   @if (auth.invitacioOberta()) {
     <app-invitacion />
+  }
+
+  @if (showVictory()) {
+    <app-dragonball-victory (closed)="onVictoryClosed()" />
   }
 }

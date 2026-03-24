@@ -3,6 +3,7 @@ export interface Texts {
   splash: {
     tagline: string; subtitle: string; enter: string;
     passwordPlaceholder: string; wrongPassword: string; hint: string;
+    searching: string; errorEmpty: string; errorNotFound: string; errorConnection: string;
   };
   hero: { pretitle: string; date: string; location: string; ctaButton: string };
   countdown: { label: string; days: string; hours: string; minutes: string; seconds: string; subtitle: string };
@@ -26,6 +27,15 @@ export interface Texts {
   };
   mediaCta: { title: string; text: string; button: string };
   footer: { love: string };
+  cats: { cat1: string[]; cat2: string[] };
+  dragonball: {
+    collected: string;
+    remaining: string;
+    allFound: string;
+    victoryTitle: string;
+    victoryText: string;
+    victoryClose: string;
+  };
   media: {
     heroTitle: string; heroText: string; backLink: string;
     step1: { title: string; text: string };
@@ -115,9 +125,13 @@ export const ca: Texts = {
     tagline: 'Més que un casament',
     subtitle: 'La historia d\'amor de',
     enter: 'Entrar',
-    passwordPlaceholder: 'Contrasenya...',
+    passwordPlaceholder: 'Codi d\'invitació...',
     wrongPassword: 'Contrasenya incorrecta, torna-ho a intentar!',
     hint: 'Pista: és un tubercle molt popular 🥔',
+    searching: 'Cercant...',
+    errorEmpty: 'Introdueix el teu codi d\'invitació.',
+    errorNotFound: 'Codi no trobat. Comprova que l\'has escrit bé.',
+    errorConnection: 'Error de connexió. Torna-ho a intentar.',
   },
   hero: {
     pretitle: 'Us convidem a celebrar el nostre casament',
@@ -166,6 +180,30 @@ export const ca: Texts = {
     button: 'Pujar fotos',
   },
   footer: { love: 'Fet amb amor per al dia més especial' },
+  dragonball: {
+    collected: 'Bola recollida! Et falten',
+    remaining: 'boles',
+    allFound: 'Has recollit totes les boles! ✨',
+    victoryTitle: '¡Has donat forces a l\'Héctor!',
+    victoryText: 'Has recollit les 7 boles del drac i l\'Héctor s\'ha transformat. Les boles s\'han tornat a repartir per la pàgina...',
+    victoryClose: 'Increïble! 🔥',
+  },
+  cats: {
+    cat1: [
+      'Els meus papes es casen i jo sense invitació 😾',
+      'Espero que hi hagi tonyina al sopar 🐟',
+      'He dormit 16 hores avui. Estic rendit. 😴',
+      'Tanta gent i cap em portarà menjar 😤',
+      'Sóc el veritable protagonista de la boda 👑',
+    ],
+    cat2: [
+      'A mi tampoc m\'han convidat... DISCRIMINACIÓ 😤',
+      'Mentre ells es casen, jo aquí guardant el sofà 🛋️',
+      'Espero que tornin aviat. Tinc gana. 🐱',
+      'La boda sense nosaltres no serà el mateix 💔',
+      'Si maiego prou fort potser em conviden 🎶',
+    ],
+  },
   media: {
     heroTitle: 'Els vostres moments',
     heroText: 'Cada foto explica una historia. Comparteix els teus millors moments del dia i en uns dies rebreu totes les fotos del reportatge complet.',
@@ -260,9 +298,13 @@ export const es: Texts = {
     tagline: 'Más que una boda',
     subtitle: 'La historia de amor de',
     enter: 'Entrar',
-    passwordPlaceholder: 'Contraseña...',
+    passwordPlaceholder: 'Código de invitación...',
     wrongPassword: '¡Contraseña incorrecta, inténtalo de nuevo!',
     hint: 'Pista: es un tubérculo muy popular 🥔',
+    searching: 'Buscando...',
+    errorEmpty: 'Introduce tu código de invitación.',
+    errorNotFound: 'Código no encontrado. Comprueba que lo has escrito bien.',
+    errorConnection: 'Error de conexión. Inténtalo de nuevo.',
   },
   hero: {
     pretitle: 'Os invitamos a celebrar nuestra boda',
@@ -311,6 +353,30 @@ export const es: Texts = {
     button: 'Subir fotos',
   },
   footer: { love: 'Hecho con amor para el día más especial' },
+  dragonball: {
+    collected: '¡Bola recogida! Te faltan',
+    remaining: 'bolas',
+    allFound: '¡Has recogido todas las bolas! ✨',
+    victoryTitle: '¡Has dado fuerzas a Héctor!',
+    victoryText: 'Has reunido las 7 bolas del dragón y Héctor se ha transformado. Las bolas se han vuelto a repartir por la página...',
+    victoryClose: '¡Increíble! 🔥',
+  },
+  cats: {
+    cat1: [
+      'Mis papás se casan y yo sin invitación 😾',
+      'Espero que haya atún en la cena 🐟',
+      'He dormido 16 horas hoy. Estoy agotado. 😴',
+      'Tanta gente y ninguno me traerá comida 😤',
+      'Soy el verdadero protagonista de la boda 👑',
+    ],
+    cat2: [
+      'A mí tampoco me han invitado... ¡DISCRIMINACIÓN! 😤',
+      'Mientras ellos se casan, yo aquí guardando el sofá 🛋️',
+      'Espero que vuelvan pronto. Tengo hambre. 🐱',
+      'La boda sin nosotros no será lo mismo 💔',
+      'Si maúllo bastante fuerte quizás me invitan 🎶',
+    ],
+  },
   media: {
     heroTitle: 'Vuestros momentos',
     heroText: 'Cada foto cuenta una historia. Comparte tus mejores momentos del día y en unos días recibiréis todas las fotos del reportaje completo.',

@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FotoService, FotoItem } from '../../services/foto.service';
 import { I18nService } from '../../services/i18n.service';
+import { DragonBallComponent } from '../../components/dragonball/dragonball';
 
 @Component({
   selector: 'app-galeria',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, DragonBallComponent],
   templateUrl: './galeria.html',
   styleUrl: './galeria.css'
 })

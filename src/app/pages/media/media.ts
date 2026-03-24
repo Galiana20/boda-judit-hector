@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { I18nService } from '../../services/i18n.service';
 import { AuthService } from '../../services/auth.service';
 import { FotoService } from '../../services/foto.service';
+import { DragonBallComponent } from '../../components/dragonball/dragonball';
 import { Storage, ref, uploadBytesResumable, getDownloadURL } from '@angular/fire/storage';
 
 interface QueueFile {
@@ -21,7 +22,7 @@ let nextId = 0;
 
 @Component({
   selector: 'app-media',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, DragonBallComponent],
   templateUrl: './media.html',
   styleUrl: './media.css'
 })

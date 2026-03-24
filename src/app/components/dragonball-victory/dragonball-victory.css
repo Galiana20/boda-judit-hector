@@ -1,0 +1,151 @@
+.victory-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 8000;
+  animation: fadeIn 0.3s ease;
+}
+
+.victory-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 8001;
+  text-align: center;
+  max-width: 480px;
+  width: 90vw;
+  padding: 40px 32px 36px;
+  background: radial-gradient(ellipse at center, #1a0a00 0%, #0a0400 100%);
+  border: 2px solid rgba(255, 180, 0, 0.5);
+  border-radius: 20px;
+  box-shadow: 0 0 60px rgba(255, 140, 0, 0.4), 0 0 120px rgba(255, 80, 0, 0.2);
+  animation: victoryAppear 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+}
+
+/* Energy aura background */
+.victory-energy {
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(ellipse at 50% 80%, rgba(255, 200, 0, 0.15) 0%, transparent 70%);
+  animation: energyPulse 1.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Lightning bolts */
+.victory-lightning {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.lightning-bolt {
+  position: absolute;
+  width: 2px;
+  height: 40px;
+  background: linear-gradient(to bottom, transparent, #FFD700, transparent);
+  top: calc(var(--i) * 14%);
+  left: calc(10% + var(--i) * 14%);
+  animation: lightning 0.8s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.12s);
+  opacity: 0;
+}
+@keyframes lightning {
+  0%, 100% { opacity: 0; transform: scaleY(0.5); }
+  50%       { opacity: 0.8; transform: scaleY(1); }
+}
+
+.victory-img {
+  width: 200px;
+  height: auto;
+  display: block;
+  margin: 0 auto 20px;
+  filter: drop-shadow(0 0 20px rgba(255, 200, 0, 0.8)) drop-shadow(0 0 40px rgba(255, 100, 0, 0.5));
+  animation: heroPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
+  position: relative;
+  z-index: 1;
+}
+
+.victory-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.3rem, 4vw, 1.8rem);
+  color: #FFD700;
+  margin-bottom: 12px;
+  text-shadow: 0 0 20px rgba(255, 200, 0, 0.6);
+  position: relative;
+  z-index: 1;
+}
+
+.victory-text {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.9rem;
+  color: rgba(255, 220, 150, 0.85);
+  line-height: 1.6;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.victory-balls {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+}
+.victory-ball {
+  width: 36px;
+  height: 36px;
+  animation: ballSpin 1s ease-in-out infinite;
+  animation-delay: calc(var(--i, 0) * 0.1s);
+  filter: drop-shadow(0 0 6px rgba(255, 140, 0, 0.8));
+}
+@for $i from 1 through 7 {
+  .victory-ball:nth-child(#{$i}) { --i: #{$i}; }
+}
+
+.victory-btn {
+  background: linear-gradient(135deg, #FFD700 0%, #FF8C00 100%);
+  color: #1a0a00;
+  border: none;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 14px 40px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(255, 140, 0, 0.5);
+  position: relative;
+  z-index: 1;
+}
+.victory-btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 30px rgba(255, 140, 0, 0.7);
+}
+
+@keyframes victoryAppear {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes heroPop {
+  from { transform: scale(0.3) translateY(30px); opacity: 0; }
+  to   { transform: scale(1) translateY(0);      opacity: 1; }
+}
+@keyframes energyPulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.05); }
+}
+@keyframes ballSpin {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50%       { transform: rotate(180deg) scale(1.1); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}

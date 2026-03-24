@@ -1,10 +1,11 @@
 <!-- Hero -->
-<div class="galeria-hero">
+<div class="galeria-hero" style="position:relative">
   <div class="galeria-hero-bars" aria-hidden="true">
     @for (s of [0,1,2,3,4,5,6,7,8,9,10,11]; track s) {
       <div class="gbar" [class.gbar-blau]="s%2===0" [class.gbar-grana]="s%2!==0"></div>
     }
   </div>
+  <app-dragonball [ballId]="6" bottom="10%" left="3%"></app-dragonball>
   <div class="galeria-hero-content">
     <div class="galeria-hero-icon"><i class="pi pi-images"></i></div>
     <h1>{{ i18n.T().galeria.heroTitle }}</h1>
@@ -16,7 +17,7 @@
 </div>
 
 <!-- Content -->
-<div class="galeria-content">
+<div class="galeria-content" style="position:relative">
 
   @if (loading()) {
     <div class="galeria-loading">
@@ -59,7 +60,8 @@
 </div>
 
 <!-- Footer -->
-<footer class="galeria-footer">
+<footer class="galeria-footer" style="position:relative">
+  <app-dragonball [ballId]="7" top="10%" right="3%"></app-dragonball>
   <p>Judit &amp; Héctor · 2 d'Octubre de 2026</p>
   <a routerLink="/" class="footer-home-link">
     <i class="pi pi-home"></i> {{ i18n.T().galeria.backLink }}
