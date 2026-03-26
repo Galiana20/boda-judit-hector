@@ -146,13 +146,13 @@
 /* ======= COUNTDOWN ======= */
 .countdown-section {
   padding: 80px 24px; text-align: center;
-  position: relative; overflow: hidden;
+  position: relative; overflow: hidden; min-height: 480px;
 }
 .countdown-photo-bg {
   position: absolute; inset: 0; z-index: 0;
 }
 .countdown-photo-bg img {
-  width: 100%; height: 100%; object-fit: cover; object-position: center top;
+  width: 100%; height: 100%; object-fit: cover; object-position: center 70%;
   filter: brightness(0.25) saturate(0.8);
 }
 .countdown-section .section-container { position: relative; z-index: 1; }

@@ -161,8 +161,7 @@ export const ca: Texts = {
     items: [
       { time: '17:30', event: 'Convocatòria', description: 'Us esperem amb els braços oberts. Veniu preparats per a una tarda inoblidable.' },
       { time: '18:00', event: 'Cerimònia', description: 'El moment que tant hem esperat. La Judit i l\'Héctor es diuen el "Sí, vull".' },
-      { time: '19:00', event: 'Còctel', description: 'Begudes, aperitius i els primers brindis sota el sol de La Garriga.' },
-      { time: '20:30', event: 'Banquet', description: 'Un sopar especial per celebrar junts aquest dia tan especial.' },
+      { time: '19:00', event: 'Còctel i sopar', description: 'A continuació de l\'aperitiu i sota la lluna de La Garriga, continuarem amb aperitius calents i food trucks per completar el sopar.' },
       { time: 'Nit', event: 'Festa & Ball', description: 'A ballar i celebrar fins que ens ho prohibeixin! La nit és nostra.' },
     ],
   },
@@ -334,8 +333,7 @@ export const es: Texts = {
     items: [
       { time: '17:30', event: 'Convocatoria', description: 'Os esperamos con los brazos abiertos. Venid preparados para una tarde inolvidable.' },
       { time: '18:00', event: 'Ceremonia', description: 'El momento que tanto hemos esperado. Judit y Héctor se dan el "Sí, quiero".' },
-      { time: '19:00', event: 'Cóctel', description: 'Bebidas, aperitivos y los primeros brindis bajo el sol de La Garriga.' },
-      { time: '20:30', event: 'Banquete', description: 'Una cena especial para celebrar juntos este día tan especial.' },
+      { time: '19:00', event: 'Cóctel y cena', description: 'Tras los aperitivos y bajo la luna de La Garriga, continuaremos con aperitivos calientes y food trucks para completar la cena.' },
       { time: 'Noche', event: 'Fiesta & Baile', description: '¡A bailar y celebrar hasta que nos lo prohíban! La noche es nuestra.' },
     ],
   },

@@ -42,8 +42,8 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
     direction: Math.random() > 0.5 ? 'right' : 'left' as 'right' | 'left'
   }));
 
-  scheduleIcons = ['pi-users', 'pi-heart-fill', 'pi-star-fill', 'pi-gift', 'pi-bolt'];
-  scheduleColors = ['#C4974A', '#A50044', '#7A9E7E', '#C4974A', '#004D98'];
+  scheduleIcons = ['pi-users', 'pi-heart-fill', 'pi-star-fill', 'pi-bolt'];
+  scheduleColors = ['#C4974A', '#A50044', '#7A9E7E', '#004D98'];
 
   activeCat = signal<number | null>(null);
   private catPhraseIdx = [0, 0];
