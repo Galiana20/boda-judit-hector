@@ -243,7 +243,7 @@ export const ca: Texts = {
     confirmBtn: 'Confirmar assistència',
     saving: 'Guardant...',
     closeBtn: 'Tancar',
-    footerMsg: 'L\'amor ens uneix i ens fa forts',
+    footerMsg: 'L\'amor ens uneix i ens fa més forts',
   },
   galeria: {
     heroTitle: 'La nostra galeria',
@@ -416,7 +416,7 @@ export const es: Texts = {
     confirmBtn: 'Confirmar asistencia',
     saving: 'Guardando...',
     closeBtn: 'Cerrar',
-    footerMsg: 'El amor nos une y nos hace fuertes',
+    footerMsg: 'El amor nos une y nos hace más fuertes',
   },
   galeria: {
     heroTitle: 'Nuestra galería',

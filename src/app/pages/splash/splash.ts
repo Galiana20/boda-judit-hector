@@ -1,12 +1,13 @@
 import { Component, signal, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { UpperCasePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { I18nService, Lang } from '../../services/i18n.service';
 
 @Component({
   selector: 'app-splash',
-  imports: [FormsModule],
+  imports: [FormsModule, UpperCasePipe],
   templateUrl: './splash.html',
   styleUrl: './splash.css'
 })

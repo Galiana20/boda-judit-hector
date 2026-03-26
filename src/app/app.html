@@ -51,4 +51,12 @@
   @if (showVictory()) {
     <app-dragonball-victory (closed)="onVictoryClosed()" />
   }
+
+  <button class="audio-fab" (click)="toggleMute()" [title]="isMuted() ? 'Activar música' : 'Silenciar música'">
+    @if (isMuted()) {
+      <i class="pi pi-volume-off"></i>
+    } @else {
+      <i class="pi pi-volume-up"></i>
+    }
+  </button>
 }

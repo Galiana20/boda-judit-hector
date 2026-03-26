@@ -266,3 +266,46 @@
   .lang-switcher { padding-left: 6px; }
   .nav-admin-group { padding-left: 8px; }
 }
+
+/* Botó flotant d'àudio */
+.audio-fab {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 2000;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(253, 248, 240, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(196, 151, 74, 0.2);
+  color: var(--gold-dark);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+}
+
+.audio-fab:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 28px rgba(196, 151, 74, 0.35), 0 0 0 1px rgba(196, 151, 74, 0.4);
+  background: rgba(253, 248, 240, 1);
+}
+
+.audio-fab:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 640px) {
+  .audio-fab {
+    bottom: 16px;
+    right: 16px;
+    width: 42px;
+    height: 42px;
+    font-size: 1rem;
+  }
+}
