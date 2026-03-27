@@ -9,63 +9,72 @@
   overflow: hidden;
 }
 
-/* ---- POLAROID SCATTER BACKGROUND ---- */
+/* ---- SCATTER BACKGROUND ---- */
 .polaroid-scatter {
   position: absolute;
-  inset: 0;
+  inset: -60px;
   z-index: 0;
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  gap: 8px;
-  padding: 6px;
-  align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: space-evenly;
+  gap: 4px;
+  padding: 16px;
+  overflow: hidden;
 }
 
 .polaroid {
-  background: #f8f5f0;
-  padding: 5px 5px 18px;
-  box-shadow:
-    2px 3px 10px rgba(0,0,0,0.5),
-    0 1px 3px rgba(0,0,0,0.25);
-  overflow: hidden;
-  min-width: 0;
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
+  flex-shrink: 0;
+  box-shadow: 3px 5px 16px rgba(0,0,0,0.5), 0 1px 4px rgba(0,0,0,0.25);
 }
 
 .polaroid img {
-  flex: 1;
-  width: 100%;
-  min-height: 0;
-  object-fit: cover;
-  object-position: 50% 15%;
+  height: 185px;
+  width: auto;
+  max-width: 280px;
   display: block;
 }
 
-/* Rotaciones alternadas para efecto esparcido */
-.polaroid:nth-child(7n+1) { transform: rotate(-7deg);  }
-.polaroid:nth-child(7n+2) { transform: rotate(5deg);   }
-.polaroid:nth-child(7n+3) { transform: rotate(-11deg); }
-.polaroid:nth-child(7n+4) { transform: rotate(3deg);   }
-.polaroid:nth-child(7n+5) { transform: rotate(-5deg);  }
-.polaroid:nth-child(7n+6) { transform: rotate(9deg);   }
-.polaroid:nth-child(7n+7) { transform: rotate(-3deg);  }
+/* Rotaciones variadas — efecto tiradas en mesa */
+.polaroid:nth-child(1)  { transform: rotate(-3.2deg); }
+.polaroid:nth-child(2)  { transform: rotate(2.5deg);  }
+.polaroid:nth-child(3)  { transform: rotate(-6.1deg); }
+.polaroid:nth-child(4)  { transform: rotate(4.3deg);  }
+.polaroid:nth-child(5)  { transform: rotate(-1.8deg); }
+.polaroid:nth-child(6)  { transform: rotate(7.2deg);  }
+.polaroid:nth-child(7)  { transform: rotate(-4.5deg); }
+.polaroid:nth-child(8)  { transform: rotate(3.1deg);  }
+.polaroid:nth-child(9)  { transform: rotate(-8.3deg); }
+.polaroid:nth-child(10) { transform: rotate(5.7deg);  }
+.polaroid:nth-child(11) { transform: rotate(-2.4deg); }
+.polaroid:nth-child(12) { transform: rotate(6.8deg);  }
+.polaroid:nth-child(13) { transform: rotate(-5.3deg); }
+.polaroid:nth-child(14) { transform: rotate(1.9deg);  }
+.polaroid:nth-child(15) { transform: rotate(4.6deg);  }
+.polaroid:nth-child(16) { transform: rotate(-7.1deg); }
+.polaroid:nth-child(17) { transform: rotate(3.8deg);  }
+.polaroid:nth-child(18) { transform: rotate(-2.9deg); }
+.polaroid:nth-child(19) { transform: rotate(6.4deg);  }
+.polaroid:nth-child(20) { transform: rotate(-4.7deg); }
+.polaroid:nth-child(21) { transform: rotate(2.2deg);  }
+.polaroid:nth-child(22) { transform: rotate(-6.6deg); }
+.polaroid:nth-child(23) { transform: rotate(5.1deg);  }
+.polaroid:nth-child(24) { transform: rotate(-1.5deg); }
+.polaroid:nth-child(25) { transform: rotate(-3.9deg); }
+.polaroid:nth-child(26) { transform: rotate(7.5deg);  }
+.polaroid:nth-child(27) { transform: rotate(-5.8deg); }
+.polaroid:nth-child(28) { transform: rotate(2.7deg);  }
+.polaroid:nth-child(29) { transform: rotate(-4.1deg); }
+.polaroid:nth-child(30) { transform: rotate(6.2deg);  }
+.polaroid:nth-child(31) { transform: rotate(-3.6deg); }
 
 @media (max-width: 600px) {
-  .polaroid-scatter {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(12, 1fr);
-    gap: 6px;
-  }
+  .polaroid img { height: 120px; max-width: 190px; }
 }
 
 @media (max-width: 380px) {
-  .polaroid-scatter {
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(12, 1fr);
-  }
+  .polaroid img { height: 95px; max-width: 150px; }
 }
 
 /* Luminous radial overlay — golden glow at center, subtle dark at edges */

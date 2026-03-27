@@ -152,7 +152,7 @@
   position: absolute; inset: 0; z-index: 0;
 }
 .countdown-photo-bg img {
-  width: 100%; height: 100%; object-fit: cover; object-position: center 70%;
+  width: 100%; height: 100%; object-fit: cover; object-position: center 60%;
   filter: brightness(0.25) saturate(0.8);
 }
 .countdown-section .section-container { position: relative; z-index: 1; }
@@ -237,33 +237,74 @@
 .info-card-sub { font-family: var(--font-body); font-size: 0.85rem; color: var(--text-light); }
 
 /* ======= PHOTO GALLERY ======= */
-.gallery-section { padding: 96px 24px; background: var(--cream-dark); }
+.gallery-section { padding: 96px 24px; background: var(--cream-dark); overflow: hidden; }
 
 .photos-mosaic {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 8px;
-  max-width: 1100px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0;
+  max-width: 1300px;
   margin: 0 auto;
+  padding: 20px 0;
 }
 
 .pm-item {
-  aspect-ratio: 1;
-  border-radius: 8px;
-  overflow: hidden;
+  border-radius: 2px;
   cursor: pointer;
-  box-shadow: var(--shadow-soft);
+  box-shadow: 4px 5px 18px rgba(0,0,0,0.28), 0 1px 4px rgba(0,0,0,0.12);
+  margin: 10px;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0s;
 }
 
 .pm-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: 175px;
+  width: auto;
   display: block;
-  transition: transform 0.5s ease;
+  max-width: 300px;
 }
 
-.pm-item:hover img { transform: scale(1.04); }
+/* Scattered rotations — thrown on a table */
+.pm-item:nth-child(1)  { transform: rotate(-3.1deg); }
+.pm-item:nth-child(2)  { transform: rotate(2.4deg); }
+.pm-item:nth-child(3)  { transform: rotate(-1.6deg); }
+.pm-item:nth-child(4)  { transform: rotate(3.8deg); }
+.pm-item:nth-child(5)  { transform: rotate(-2.2deg); }
+.pm-item:nth-child(6)  { transform: rotate(1.1deg); }
+.pm-item:nth-child(7)  { transform: rotate(-3.7deg); }
+.pm-item:nth-child(8)  { transform: rotate(2.9deg); }
+.pm-item:nth-child(9)  { transform: rotate(-0.8deg); }
+.pm-item:nth-child(10) { transform: rotate(3.3deg); }
+.pm-item:nth-child(11) { transform: rotate(-2.6deg); }
+.pm-item:nth-child(12) { transform: rotate(1.7deg); }
+.pm-item:nth-child(13) { transform: rotate(-3.4deg); }
+.pm-item:nth-child(14) { transform: rotate(0.9deg); }
+.pm-item:nth-child(15) { transform: rotate(2.1deg); }
+.pm-item:nth-child(16) { transform: rotate(-1.3deg); }
+.pm-item:nth-child(17) { transform: rotate(3.6deg); }
+.pm-item:nth-child(18) { transform: rotate(-2.8deg); }
+.pm-item:nth-child(19) { transform: rotate(1.4deg); }
+.pm-item:nth-child(20) { transform: rotate(-3.9deg); }
+.pm-item:nth-child(21) { transform: rotate(2.7deg); }
+.pm-item:nth-child(22) { transform: rotate(-1.9deg); }
+.pm-item:nth-child(23) { transform: rotate(3.1deg); }
+.pm-item:nth-child(24) { transform: rotate(-0.5deg); }
+.pm-item:nth-child(25) { transform: rotate(-2.3deg); }
+.pm-item:nth-child(26) { transform: rotate(1.8deg); }
+.pm-item:nth-child(27) { transform: rotate(-3.2deg); }
+.pm-item:nth-child(28) { transform: rotate(2.5deg); }
+.pm-item:nth-child(29) { transform: rotate(-1.1deg); }
+.pm-item:nth-child(30) { transform: rotate(3.4deg); }
+.pm-item:nth-child(31) { transform: rotate(-2.7deg); }
+
+.pm-item:hover {
+  transform: rotate(0deg) scale(1.06) !important;
+  z-index: 20;
+  box-shadow: 8px 10px 32px rgba(0,0,0,0.38);
+}
 
 /* ======= PLANNING ======= */
 .planning-section { padding: 96px 24px; background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 100%); }
@@ -458,7 +499,7 @@
   .countdown-grid { gap: 10px; }
   .countdown-item { min-width: 78px; }
   .countdown-number-wrap { min-width: 78px; padding: 14px 18px; }
-  .photos-mosaic { grid-template-columns: repeat(4, 1fr); }
+  .pm-item img { height: 140px; }
   .location-content { grid-template-columns: 1fr; gap: 32px; }
   .info-section, .planning-section, .location-section, .media-cta-section, .gallery-section { padding: 64px 20px; }
   .countdown-section { padding: 64px 20px; }
@@ -473,7 +514,7 @@
   .countdown-number-wrap { min-width: 68px; padding: 12px 14px; }
   .countdown-item { min-width: 68px; }
   .countdown-section { padding: 48px 16px; }
-  .photos-mosaic { grid-template-columns: repeat(2, 1fr); }
+  .pm-item img { height: 110px; max-width: 200px; }
   .info-section, .planning-section, .location-section, .media-cta-section, .gallery-section { padding: 48px 16px; }
   .timeline-card { padding: 14px 16px; }
   .timeline-time { font-size: 1.2rem; }
