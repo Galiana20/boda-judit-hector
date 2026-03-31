@@ -7,7 +7,7 @@ const STORAGE_KEY = 'lang';
 
 @Injectable({ providedIn: 'root' })
 export class I18nService {
-  lang = signal<Lang>((localStorage.getItem(STORAGE_KEY) as Lang) ?? 'ca');
+  lang = signal<Lang>((localStorage.getItem(STORAGE_KEY) as Lang) ?? 'es');
 
   T = computed<Texts>(() => this.lang() === 'ca' ? ca : es);
 

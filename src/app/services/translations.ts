@@ -71,6 +71,12 @@ export interface Texts {
     saving: string;
     closeBtn: string;
     footerMsg: string;
+    dresscode: {
+      title: string;
+      text: string;
+      noWhite: string;
+      noBrown: string;
+    };
   };
   galeria: {
     heroTitle: string;
@@ -243,6 +249,12 @@ export const ca: Texts = {
     saving: 'Guardant...',
     closeBtn: 'Tancar',
     footerMsg: 'L\'amor ens uneix i ens fa més forts',
+    dresscode: {
+      title: '⚠️ Dress code important',
+      text: 'Per respecte als nuvis, us demanem que eviteu els següents colors:',
+      noWhite: '🤍 Blanc — reservat per a la núvia',
+      noBrown: '🤎 Marró — color reservat',
+    },
   },
   galeria: {
     heroTitle: 'La nostra galeria',
@@ -415,6 +427,12 @@ export const es: Texts = {
     saving: 'Guardando...',
     closeBtn: 'Cerrar',
     footerMsg: 'El amor nos une y nos hace más fuertes',
+    dresscode: {
+      title: '⚠️ Dress code importante',
+      text: 'Por respeto a los novios, os pedimos que evitéis los siguientes colores:',
+      noWhite: '🤍 Blanco — reservado para la novia',
+      noBrown: '🤎 Marrón — color reservado',
+    },
   },
   galeria: {
     heroTitle: 'Nuestra galería',
