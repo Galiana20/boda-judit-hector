@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FotoService, FotoItem } from '../../services/foto.service';
 import { I18nService } from '../../services/i18n.service';
+import { AuthService } from '../../services/auth.service';
 import { DragonBallComponent } from '../../components/dragonball/dragonball';
 
 @Component({
@@ -14,6 +15,7 @@ import { DragonBallComponent } from '../../components/dragonball/dragonball';
 export class GaleriaComponent implements OnInit {
   private fotoService = inject(FotoService);
   i18n = inject(I18nService);
+  auth = inject(AuthService);
 
   loading = signal(true);
   fotos = signal<FotoItem[]>([]);

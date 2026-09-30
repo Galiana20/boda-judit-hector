@@ -37,8 +37,12 @@ export class SplashComponent {
     this.loading.set(false);
 
     if (result === 'ok') {
-      this.auth.invitacioOberta.set(true);
-      this.router.navigate(['/']);
+      if (this.auth.isFotosOnly()) {
+        this.router.navigate(['/galeria']);
+      } else {
+        this.auth.invitacioOberta.set(true);
+        this.router.navigate(['/']);
+      }
     } else if (result === 'not-found') {
       this.triggerError(this.i18n.T().splash.errorNotFound);
       this.codigo = '';

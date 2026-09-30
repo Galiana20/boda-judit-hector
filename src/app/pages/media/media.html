@@ -12,10 +12,12 @@
     </div>
     <h1>{{ i18n.T().media.heroTitle }}</h1>
     <p>{{ i18n.T().media.heroText }}</p>
-    <a routerLink="/" class="back-link">
-      <i class="pi pi-arrow-left"></i>
-      {{ i18n.T().media.backLink }}
-    </a>
+    @if (!auth.isFotosOnly()) {
+      <a routerLink="/" class="back-link">
+        <i class="pi pi-arrow-left"></i>
+        {{ i18n.T().media.backLink }}
+      </a>
+    }
   </div>
 </div>
 
@@ -150,8 +152,10 @@
 <!-- Footer -->
 <footer class="media-footer">
   <p>Judit &amp; Héctor · 2 d'Octubre de 2026</p>
-  <a routerLink="/" class="footer-home-link">
-    <i class="pi pi-home"></i>
-    {{ i18n.T().media.backLink }}
-  </a>
+  @if (!auth.isFotosOnly()) {
+    <a routerLink="/" class="footer-home-link">
+      <i class="pi pi-home"></i>
+      {{ i18n.T().media.backLink }}
+    </a>
+  }
 </footer>

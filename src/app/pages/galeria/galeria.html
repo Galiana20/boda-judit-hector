@@ -10,9 +10,11 @@
     <div class="galeria-hero-icon"><i class="pi pi-images"></i></div>
     <h1>{{ i18n.T().galeria.heroTitle }}</h1>
     <p>{{ i18n.T().galeria.heroText }}</p>
-    <a routerLink="/" class="back-link">
-      <i class="pi pi-arrow-left"></i> {{ i18n.T().galeria.backLink }}
-    </a>
+    @if (!auth.isFotosOnly()) {
+      <a routerLink="/" class="back-link">
+        <i class="pi pi-arrow-left"></i> {{ i18n.T().galeria.backLink }}
+      </a>
+    }
   </div>
 </div>
 
@@ -63,9 +65,11 @@
 <footer class="galeria-footer" style="position:relative">
   <app-dragonball [ballId]="7" top="10%" right="3%"></app-dragonball>
   <p>Judit &amp; Héctor · 2 d'Octubre de 2026</p>
-  <a routerLink="/" class="footer-home-link">
-    <i class="pi pi-home"></i> {{ i18n.T().galeria.backLink }}
-  </a>
+  @if (!auth.isFotosOnly()) {
+    <a routerLink="/" class="footer-home-link">
+      <i class="pi pi-home"></i> {{ i18n.T().galeria.backLink }}
+    </a>
+  }
 </footer>
 
 <!-- Lightbox -->

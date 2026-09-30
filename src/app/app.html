@@ -2,25 +2,29 @@
   <app-splash />
 } @else {
   <nav class="app-nav">
-    <a routerLink="/" class="nav-brand">
+    <a [routerLink]="auth.isFotosOnly() ? '/galeria' : '/'" class="nav-brand">
       <img src="/img/escudo.png" alt="J&H" class="nav-escudo">
       <span class="nav-brand-text">J <span class="nav-ampersand">&</span> H</span>
     </a>
 
     <div class="nav-links">
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link nav-link-home">
-        {{ i18n.T().nav.home }}
-      </a>
+      @if (!auth.isFotosOnly()) {
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="nav-link nav-link-home">
+          {{ i18n.T().nav.home }}
+        </a>
+      }
       <a routerLink="/galeria" routerLinkActive="active" class="nav-link">
         <i class="pi pi-images"></i> <span class="nav-link-label">{{ i18n.T().nav.gallery }}</span>
       </a>
       <a routerLink="/media" routerLinkActive="active" class="nav-link nav-link-media">
         <i class="pi pi-camera"></i> {{ i18n.T().nav.photos }}
       </a>
-      <button class="nav-inv-btn" (click)="auth.invitacioOberta.set(true)">
-        <i class="pi pi-envelope"></i>
-        <span>{{ i18n.T().nav.myInvitation }}</span>
-      </button>
+      @if (!auth.isFotosOnly()) {
+        <button class="nav-inv-btn" (click)="auth.invitacioOberta.set(true)">
+          <i class="pi pi-envelope"></i>
+          <span>{{ i18n.T().nav.myInvitation }}</span>
+        </button>
+      }
       @if (auth.isAdmin()) {
         <div class="nav-admin-group">
           <a routerLink="/admin/invitados" routerLinkActive="admin-active" class="nav-admin-link">
@@ -44,7 +48,7 @@
 
   <router-outlet />
 
-  @if (auth.invitacioOberta()) {
+  @if (auth.invitacioOberta() && !auth.isFotosOnly()) {
     <app-invitacion />
   }
 

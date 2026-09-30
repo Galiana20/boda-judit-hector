@@ -30,7 +30,7 @@ export class MediaComponent {
   i18n = inject(I18nService);
   private storage = inject(Storage);
   private fotoService = inject(FotoService);
-  private auth = inject(AuthService);
+  auth = inject(AuthService);
 
   isDragOver = signal(false);
   files = signal<QueueFile[]>([]);
